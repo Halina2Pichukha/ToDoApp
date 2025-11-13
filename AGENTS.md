@@ -1,153 +1,94 @@
 # AGENTS.md
 
-## AI Agent Collaboration Guidelines
-
-This document outlines the guidelines and best practices for AI agents collaborating on the ToDoApp project.
-
 ## Purpose
 
-This file serves as a guide for AI-powered development tools and agents working on this repository. It ensures consistent code quality, maintainable architecture, and adherence to project standards.
+This document serves as a registry and reference for all **agents** (autonomous components or services) within this application. In this project, an "agent" refers to a specialized module or service that handles a specific domain of responsibility, such as task management, notifications, data synchronization, or external integrations.
 
-## Project Overview
+Each agent operates independently and communicates with other parts of the system through well-defined interfaces. This document helps developers understand the role, responsibilities, and technical details of each agent in the system.
 
-ToDoApp is a Java-based task management application following industry best practices for:
-- Clean code architecture
-- Test-driven development
-- Comprehensive documentation
-- Version control best practices
+---
 
-## Development Guidelines for AI Agents
+## Agent Registry
 
-### Code Standards
+### Example Agent: TaskProcessingAgent
 
-1. **Java Version**: Target Java 11 or higher
-2. **Coding Style**: Follow Oracle's Java Code Conventions
-3. **Naming Conventions**:
-   - Classes: PascalCase (e.g., `TaskManager`)
-   - Methods: camelCase (e.g., `addTask()`)
-   - Constants: UPPER_SNAKE_CASE (e.g., `MAX_TASKS`)
-   - Packages: lowercase (e.g., `com.todoapp.service`)
+| **Attribute**              | **Details**                                                                 |
+|---------------------------|-----------------------------------------------------------------------------|
+| **Agent Name**            | TaskProcessingAgent                                                         |
+| **Description/Purpose**   | Handles all task-related operations including creation, updates, and deletion |
+| **Responsibilities**      | - Validate task inputs<br>- Process task state transitions<br>- Trigger notifications on task completion |
+| **Key Classes/Modules**   | `TaskProcessor.java`, `TaskValidator.java`, `TaskRepository.java`         |
+| **Configuration**         | - `TASK_MAX_SIZE`: Maximum task description length (env variable)<br>- `task.processing.enabled`: Enable/disable flag (application.properties) |
+| **Dependencies**          | - Database connection (via DataSource)<br>- NotificationAgent for alerts   |
+| **Logging/Metrics**       | - Logs to `logs/task-agent.log`<br>- Metrics: task creation rate, processing time |
+| **Future Enhancements**   | - Add batch processing support<br>- Implement priority-based task queuing  |
 
-### Architecture Principles
+---
 
-1. **Separation of Concerns**: Keep business logic, data access, and presentation layers separate
-2. **SOLID Principles**: Adhere to Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion
-3. **Design Patterns**: Use appropriate patterns (Factory, Strategy, Observer, etc.) where beneficial
-4. **Dependency Management**: Minimize coupling and maximize cohesion
+### Agent Template: [Agent Name]
 
-### Testing Requirements
+| **Attribute**              | **Details**                                                                 |
+|---------------------------|-----------------------------------------------------------------------------|
+| **Agent Name**            | [Name of the agent, e.g., NotificationAgent, DataSyncAgent]                |
+| **Description/Purpose**   | [Brief description of what this agent does and why it exists]              |
+| **Responsibilities**      | - [Primary responsibility 1]<br>- [Primary responsibility 2]<br>- [Primary responsibility 3] |
+| **Key Classes/Modules**   | [List main classes, interfaces, or packages, e.g., `NotificationService.java`, `EmailSender.java`] |
+| **Configuration**         | - [Environment variable or property name]: [Description]<br>- [Another config]: [Description] |
+| **Dependencies**          | - [External service or library]<br>- [Internal agent or module dependency] |
+| **Logging/Metrics**       | - [Log file location or logging framework]<br>- [Key metrics tracked]      |
+| **Future Enhancements**   | - [Planned improvement 1]<br>- [Planned improvement 2]                     |
 
-1. **Unit Tests**: Write tests for all business logic using JUnit 5
-2. **Test Coverage**: Aim for at least 80% code coverage
-3. **Test Naming**: Use descriptive names (e.g., `shouldAddTaskWhenValidInput()`)
-4. **Integration Tests**: Include tests for component interactions
-5. **Test Organization**: Mirror the source code structure in the tests directory
+---
 
-### Documentation Standards
+## How to Document a New Agent
 
-1. **JavaDoc**: Document all public classes, methods, and interfaces
-2. **Comments**: Use inline comments sparingly and only for complex logic
-3. **README Updates**: Keep the README.md current with feature changes
-4. **Code Examples**: Provide usage examples in documentation
+When creating a new agent in this application, follow these guidelines to document it properly:
 
-### Version Control Practices
+1. **Create an entry in the Agent Registry**
+   - Copy the "Agent Template" section above
+   - Replace all placeholder text with actual details about your agent
 
-1. **Commit Messages**: Use clear, descriptive commit messages
-   - Format: `<type>: <subject>` (e.g., `feat: add task deletion feature`)
-   - Types: feat, fix, docs, style, refactor, test, chore
-2. **Branch Strategy**: Create feature branches from main
-3. **Pull Requests**: Include description, test results, and review checklist
-4. **Code Review**: Ensure all changes are reviewed before merging
+2. **Naming Conventions**
+   - Use descriptive names that clearly indicate the agent's purpose (e.g., `EmailNotificationAgent`, `DataSyncAgent`)
+   - Follow the existing naming patterns in the codebase
 
-### File Organization
+3. **Be Specific and Concise**
+   - Clearly state the agent's purpose in 1-2 sentences
+   - List concrete responsibilities, not vague descriptions
+   - Include actual file names, class names, and configuration keys
 
-```
-src/
-├── main/
-│   └── java/
-│       └── com/
-│           └── todoapp/
-│               ├── model/      # Domain models
-│               ├── service/    # Business logic
-│               ├── repository/ # Data access
-│               ├── controller/ # Application controllers
-│               └── util/       # Utility classes
+4. **Document Configuration**
+   - List all environment variables, application properties, or configuration files
+   - Include default values and acceptable ranges where applicable
 
-tests/
-└── java/
-    └── com/
-        └── todoapp/
-            ├── model/
-            ├── service/
-            └── repository/
+5. **List Dependencies**
+   - Identify both external (libraries, services) and internal (other agents, modules) dependencies
+   - Note any circular dependencies or special initialization order requirements
 
-docs/
-├── requirements/   # Functional and non-functional requirements
-├── roles/          # User roles and permissions
-└── tasks/          # Task breakdowns and planning
-```
+6. **Include Observability Details**
+   - Specify log file locations and log levels
+   - Document key metrics, counters, or performance indicators
+   - Note any monitoring dashboards or alerting rules
 
-### Security Considerations
+7. **Plan for the Future**
+   - Add known limitations or technical debt
+   - List planned enhancements or features under consideration
 
-1. **Input Validation**: Always validate and sanitize user inputs
-2. **Error Handling**: Use proper exception handling, avoid exposing sensitive information
-3. **Dependencies**: Keep dependencies up-to-date and scan for vulnerabilities
-4. **Credentials**: Never commit credentials or API keys to the repository
+8. **Keep It Updated**
+   - Update this document whenever agent responsibilities change
+   - Remove entries for deprecated or removed agents
+   - Version significant changes if needed
 
-### Performance Guidelines
+---
 
-1. **Efficiency**: Optimize algorithms for time and space complexity
-2. **Resource Management**: Properly close resources (files, connections, etc.)
-3. **Caching**: Implement caching where appropriate
-4. **Profiling**: Profile code for performance bottlenecks when needed
+## Additional Notes
 
-## Agent-Specific Instructions
+- Agents should be loosely coupled and independently deployable where possible
+- All inter-agent communication should go through defined interfaces or messaging systems
+- Each agent should have its own test suite and documentation
+- Consider creating sequence diagrams for complex agent interactions
 
-### When Adding Features
+---
 
-1. Review existing code structure
-2. Write tests first (TDD approach)
-3. Implement feature following SOLID principles
-4. Update documentation
-5. Run all tests to ensure no regressions
-6. Update CHANGELOG if applicable
-
-### When Fixing Bugs
-
-1. Write a failing test that reproduces the bug
-2. Fix the bug with minimal changes
-3. Ensure the test passes
-4. Check for similar issues elsewhere
-5. Document the fix in commit messages
-
-### When Refactoring
-
-1. Ensure comprehensive test coverage exists
-2. Make small, incremental changes
-3. Run tests after each change
-4. Update documentation if public APIs change
-5. Maintain backward compatibility when possible
-
-## Collaboration Expectations
-
-- **Communication**: Document decisions and rationale in code comments or commit messages
-- **Consistency**: Follow existing patterns and conventions in the codebase
-- **Quality**: Prioritize code quality over speed
-- **Learning**: Share knowledge through clear documentation and examples
-
-## Resources
-
-- [Java Code Conventions](https://www.oracle.com/java/technologies/javase/codeconventions-contents.html)
-- [Effective Java by Joshua Bloch](https://www.oreilly.com/library/view/effective-java/9780134686097/)
-- [JUnit 5 Documentation](https://junit.org/junit5/docs/current/user-guide/)
-- [Maven Documentation](https://maven.apache.org/guides/)
-- [Git Best Practices](https://git-scm.com/book/en/v2)
-
-## Version History
-
-- v1.0.0 - Initial guidelines established
-- Future versions will be documented here as the project evolves
-
-## Questions or Suggestions
-
-For questions about these guidelines or suggestions for improvements, please open an issue or discussion in the repository.
+**Last Updated:** [Date]  
+**Document Owner:** [Team/Person responsible for maintaining this file]
