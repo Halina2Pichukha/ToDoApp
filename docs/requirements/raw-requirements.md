@@ -1,1 +1,1 @@
-Simple Web based todo application with modern responsive UI design. Support Google and Microsoft SSO.
+Simple Web based todo application with modern responsive UI design.
