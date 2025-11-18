@@ -2,9 +2,23 @@
 
 This directory contains all epic and user story documentation for the ToDoApp MVP.
 
-**Document Version:** 1.0  
+**Document Version:** 1.1  
 **Last Updated:** 2025-11-18  
 **Status:** Active
+
+---
+
+## 📊 Visual Diagrams
+
+For visual representations of epics, stories, dependencies, and timelines, see:
+- **[Diagrams Documentation](./diagrams/README.md)** - Comprehensive visual diagrams including:
+  - Epic Dependencies
+  - Story Flow Diagram
+  - Requirements Traceability
+  - MVP Timeline (Gantt Chart)
+  - Priority Matrix
+  - Architecture Overview
+  - Story Dependency Graph
 
 ---
 
@@ -299,6 +313,60 @@ EPIC-004 (Testing) ──validates──> All other epics
 21. [STORY-021: Unit Test Framework Setup](./stories/STORY-021-unit-test-framework-setup.md)
 22. [STORY-022: Task CRUD Unit Tests](./stories/STORY-022-task-crud-unit-tests.md)
 23. [STORY-023: Storage Integration Tests](./stories/STORY-023-storage-integration-tests.md)
+
+---
+
+## Quick Visual Reference
+
+Here's a quick preview of the Epic Dependencies diagram (see [full diagrams](./diagrams/README.md) for all visualizations):
+
+```mermaid
+graph TB
+    subgraph "Phase 1: Foundation"
+        E3[EPIC-003: Data Persistence]
+        E1_P1[EPIC-001 Part 1: Task CRUD Foundation]
+    end
+    
+    subgraph "Phase 2: Core Features"
+        E1_P2[EPIC-001 Part 2: Task CRUD Complete]
+        E2_P2[EPIC-002 Part 2: UI Components]
+    end
+    
+    subgraph "Phase 3: Polish"
+        E2_P3[EPIC-002 Part 3: UI Polish]
+        E5[EPIC-005: Non-Functional]
+    end
+    
+    subgraph "Cross-Cutting"
+        E4[EPIC-004: QA & Testing]
+    end
+    
+    E3 -->|Enables| E1_P1
+    E1_P1 -->|Foundation for| E1_P2
+    E1_P1 -->|Needs styling| E2_P2
+    E1_P2 -->|Complete for| E2_P3
+    E2_P2 -->|Ready for| E2_P3
+    E2_P3 -->|Validated by| E5
+    E4 -.->|Tests All| E1_P1
+    E4 -.->|Tests All| E1_P2
+    E4 -.->|Tests All| E2_P2
+    
+    style E3 fill:#e1f5ff
+    style E1_P1 fill:#e1f5ff
+    style E1_P2 fill:#fff4e1
+    style E2_P2 fill:#fff4e1
+    style E2_P3 fill:#f0ffe1
+    style E5 fill:#f0ffe1
+    style E4 fill:#ffe1f5
+```
+
+**See [Diagrams Documentation](./diagrams/README.md) for:**
+- Detailed story flow diagrams
+- Requirements traceability maps
+- MVP timeline (Gantt chart)
+- Priority matrix
+- Architecture overview
+- Complete dependency graphs
 
 ---
 
