@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoApp Design Mockups - Catalog</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- 
+    DESIGN NOTES:
+    - Purpose: Catalog/index page for all ToDoApp design mockups
+    - Target users: Designers, developers, stakeholders reviewing mockups
+    - User goals: Navigate to specific mockups, understand mockup structure
+    - Key interactions: Click links to open mockups in same/new tab
+    - Responsive behavior: Single column on mobile, organized grid on larger screens
+    - Accessibility notes: Semantic HTML, proper heading hierarchy, keyboard navigable links
+    - Edge cases handled: N/A for catalog page
+    -->
+    
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Header -->
+        <header class="mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">ToDoApp Design Mockups</h1>
+            <p class="text-lg text-gray-600 mb-6">
+                User-centered, accessible UI/UX mockups demonstrating all features and interactions of the ToDoApp.
+                All mockups are self-contained HTML files with Tailwind CSS and meet WCAG 2.1 AA accessibility standards.
+            </p>
+            
+            <div class="bg-blue-50 border-l-4 border-primary-500 p-4 rounded-r">
+                <h2 class="text-lg font-semibold text-gray-900 mb-2">About These Mockups</h2>
+                <ul class="text-sm text-gray-700 space-y-1 list-disc list-inside">
+                    <li>Self-contained HTML files - open directly in browser</li>
+                    <li>Interactive states demonstrated with JavaScript</li>
+                    <li>Responsive design (mobile-first, 320px+)</li>
+                    <li>WCAG 2.1 AA compliant (color contrast, keyboard navigation, screen reader compatible)</li>
+                    <li>Realistic content (no Lorem Ipsum)</li>
+                    <li>Edge cases included (empty states, errors, loading)</li>
+                </ul>
+            </div>
+        </header>
+
+        <!-- EPIC-001: Task CRUD Operations -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-gray-200">
+                EPIC-001: Task CRUD Operations
+            </h2>
+            <p class="text-gray-600 mb-6">
+                Core task management functionality including create, read, update, and delete operations.
+            </p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <a href="epic-001-task-crud/story-001-create-task-form.html" 
+                   class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg hover:border-primary-500 transition-all focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Create Task Form</h3>
+                    <p class="text-sm text-gray-600 mb-3">STORY-001: Task creation form with validation and character counters</p>
+                    <span class="inline-flex items-center text-xs font-medium text-primary-600">
+                        View Mockup →
+                    </span>
+                </a>
+                
+                <a href="epic-001-task-crud/story-003-display-task-list.html" 
+                   class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg hover:border-primary-500 transition-all focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Display Task List</h3>
+                    <p class="text-sm text-gray-600 mb-3">STORY-003: Task list display with sorting and status indicators</p>
+                    <span class="inline-flex items-center text-xs font-medium text-primary-600">
+                        View Mockup →
+                    </span>
+                </a>
+                
+                <a href="epic-001-task-crud/story-004-empty-state.html" 
+                   class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg hover:border-primary-500 transition-all focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Empty State</h3>
+                    <p class="text-sm text-gray-600 mb-3">STORY-004: Helpful empty state for new users</p>
+                    <span class="inline-flex items-center text-xs font-medium text-primary-600">
+                        View Mockup →
+                    </span>
+                </a>
+                
+                <a href="epic-001-task-crud/story-005-toggle-completion.html" 
+                   class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg hover:border-primary-500 transition-all focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Toggle Task Completion</h3>
+                    <p class="text-sm text-gray-600 mb-3">STORY-005: Mark tasks as complete/incomplete with visual feedback</p>
+                    <span class="inline-flex items-center text-xs font-medium text-primary-600">
+                        View Mockup →
+                    </span>
+                </a>
+                
+                <a href="epic-001-task-crud/story-006-edit-task-form.html" 
+                   class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg hover:border-primary-500 transition-all focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Edit Task Form</h3>
+                    <p class="text-sm text-gray-600 mb-3">STORY-006/007: Edit existing tasks with pre-filled form</p>
+                    <span class="inline-flex items-center text-xs font-medium text-primary-600">
+                        View Mockup →
+                    </span>
+                </a>
+                
+                <a href="epic-001-task-crud/story-008-delete-confirmation.html" 
+                   class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg hover:border-primary-500 transition-all focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Delete Confirmation</h3>
+                    <p class="text-sm text-gray-600 mb-3">STORY-008/009: Confirm task deletion to prevent accidents</p>
+                    <span class="inline-flex items-center text-xs font-medium text-primary-600">
+                        View Mockup →
+                    </span>
+                </a>
+                
+                <a href="epic-001-task-crud/all-states-demo.html" 
+                   class="block p-6 bg-gradient-to-br from-primary-50 to-blue-50 border border-primary-200 rounded-lg shadow hover:shadow-lg hover:border-primary-500 transition-all focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">🎨 All States Demo</h3>
+                    <p class="text-sm text-gray-600 mb-3">Comprehensive demonstration of all interactive states and behaviors</p>
+                    <span class="inline-flex items-center text-xs font-medium text-primary-600">
+                        View Demo →
+                    </span>
+                </a>
+            </div>
+        </section>
+
+        <!-- EPIC-002: User Interface Design -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-gray-200">
+                EPIC-002: User Interface & Design
+            </h2>
+            <p class="text-gray-600 mb-6">
+                Visual design, responsive layouts, and accessibility features.
+            </p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <a href="epic-002-ui-design/story-011-responsive-layout.html" 
+                   class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg hover:border-primary-500 transition-all focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Responsive Layout</h3>
+                    <p class="text-sm text-gray-600 mb-3">STORY-011: Mobile-first responsive foundation</p>
+                    <span class="inline-flex items-center text-xs font-medium text-primary-600">
+                        View Mockup →
+                    </span>
+                </a>
+                
+                <a href="epic-002-ui-design/story-012-visual-design.html" 
+                   class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg hover:border-primary-500 transition-all focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Task List Visual Design</h3>
+                    <p class="text-sm text-gray-600 mb-3">STORY-012: Modern, clean visual styling</p>
+                    <span class="inline-flex items-center text-xs font-medium text-primary-600">
+                        View Mockup →
+                    </span>
+                </a>
+                
+                <a href="epic-002-ui-design/story-013-form-components.html" 
+                   class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg hover:border-primary-500 transition-all focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Form UI Components</h3>
+                    <p class="text-sm text-gray-600 mb-3">STORY-013: Reusable form components and patterns</p>
+                    <span class="inline-flex items-center text-xs font-medium text-primary-600">
+                        View Mockup →
+                    </span>
+                </a>
+                
+                <a href="epic-002-ui-design/story-014-feedback-states.html" 
+                   class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg hover:border-primary-500 transition-all focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Interactive Feedback States</h3>
+                    <p class="text-sm text-gray-600 mb-3">STORY-014: Hover, focus, active, disabled, loading states</p>
+                    <span class="inline-flex items-center text-xs font-medium text-primary-600">
+                        View Mockup →
+                    </span>
+                </a>
+                
+                <a href="epic-002-ui-design/story-015-accessibility.html" 
+                   class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg hover:border-primary-500 transition-all focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Accessibility Compliance</h3>
+                    <p class="text-sm text-gray-600 mb-3">STORY-015: WCAG 2.1 AA standards demonstration</p>
+                    <span class="inline-flex items-center text-xs font-medium text-primary-600">
+                        View Mockup →
+                    </span>
+                </a>
+                
+                <a href="epic-002-ui-design/story-016-mobile-touch.html" 
+                   class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg hover:border-primary-500 transition-all focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Mobile Touch Optimization</h3>
+                    <p class="text-sm text-gray-600 mb-3">STORY-016: Touch-friendly targets and interactions</p>
+                    <span class="inline-flex items-center text-xs font-medium text-primary-600">
+                        View Mockup →
+                    </span>
+                </a>
+            </div>
+        </section>
+
+        <!-- EPIC-003: Data Persistence -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-gray-200">
+                EPIC-003: Data Persistence Layer
+            </h2>
+            <p class="text-gray-600 mb-6">
+                Error handling and loading states for data operations.
+            </p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <a href="epic-003-data-persistence/storage-error-states.html" 
+                   class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg hover:border-primary-500 transition-all focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Storage Error States</h3>
+                    <p class="text-sm text-gray-600 mb-3">STORY-020: Graceful error handling for storage issues</p>
+                    <span class="inline-flex items-center text-xs font-medium text-primary-600">
+                        View Mockup →
+                    </span>
+                </a>
+                
+                <a href="epic-003-data-persistence/data-loading-states.html" 
+                   class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg hover:border-primary-500 transition-all focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Data Loading States</h3>
+                    <p class="text-sm text-gray-600 mb-3">STORY-017/019: Loading indicators for data operations</p>
+                    <span class="inline-flex items-center text-xs font-medium text-primary-600">
+                        View Mockup →
+                    </span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="mt-16 pt-8 border-t border-gray-200">
+            <p class="text-sm text-gray-600 text-center">
+                ToDoApp Design Mockups | Created following 
+                <a href="../roles/ui-design.role.md" class="text-primary-600 hover:underline focus:outline-none focus:underline">UI/UX Design Standards</a> | 
+                WCAG 2.1 AA Compliant
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

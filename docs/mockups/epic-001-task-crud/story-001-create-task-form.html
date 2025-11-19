@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Task Form - ToDoApp Mockup</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+    
+    <style>
+        /* Custom focus styles for better accessibility */
+        .focus-visible:focus {
+            outline: 2px solid #0ea5e9;
+            outline-offset: 2px;
+        }
+        
+        /* Smooth transitions for interactive elements */
+        button, input, textarea {
+            transition: all 0.2s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- 
+    DESIGN NOTES:
+    - Purpose: Demonstrates the task creation form with validation and character counters (STORY-001)
+    - Target users: All ToDoApp users who want to create new tasks
+    - User goals: Create a new task with title (required) and optional description
+    - Key interactions:
+      * Click "Add Task" button to open form modal
+      * Auto-focus on title field when form opens
+      * Real-time character counting for title (200 max) and description (1000 max)
+      * Form validation with clear error messages
+      * Cancel button to close form without saving
+      * Save button to create task (shows validation errors if invalid)
+      * Escape key to close form
+    - Responsive behavior:
+      * Mobile (< 640px): Full-screen modal with optimized spacing
+      * Tablet/Desktop (≥ 640px): Centered modal overlay
+    - Accessibility notes:
+      * Keyboard navigation: Tab through fields, Enter to submit, Escape to cancel
+      * Screen reader: ARIA labels, live regions for validation errors, proper form labels
+      * Focus management: Auto-focus on title when opening, return focus to trigger button on close
+      * Color contrast: All text meets WCAG 2.1 AA (4.5:1 minimum)
+      * Focus indicators: Visible 2px outline on all interactive elements
+    - Edge cases handled:
+      * Empty title: Shows validation error
+      * Title exceeds 200 chars: Prevents input and shows warning
+      * Description exceeds 1000 chars: Prevents input and shows warning
+      * Form closes without creating task on cancel
+    -->
+    
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">My Tasks</h1>
+            <p class="text-gray-600">Create and manage your daily tasks</p>
+        </header>
+        
+        <!-- Main content area (would show task list when populated) -->
+        <main id="main-content" class="mb-8">
+            <!-- Add Task Button (Fixed positioning for easy access) -->
+            <div class="mb-6">
+                <button 
+                    id="add-task-btn"
+                    class="inline-flex items-center px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg shadow-md hover:bg-primary-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 active:bg-primary-800 transition-all"
+                    aria-label="Add new task"
+                    onclick="openTaskForm()">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                    Add Task
+                </button>
+            </div>
+            
+            <!-- Placeholder for task list -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <p class="text-gray-500 text-center">Click "Add Task" to create your first task</p>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Task Creation Modal -->
+    <div 
+        id="task-modal" 
+        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-50"
+        role="dialog"
+        aria-labelledby="modal-title"
+        aria-modal="true">
+        
+        <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <!-- Modal Header -->
+            <div class="bg-primary-600 text-white px-6 py-4 rounded-t-lg">
+                <h2 id="modal-title" class="text-xl font-semibold">Create New Task</h2>
+            </div>
+            
+            <!-- Modal Body -->
+            <form id="task-form" class="p-6 space-y-6" onsubmit="handleSubmit(event)">
+                <!-- Title Field -->
+                <div>
+                    <label for="task-title" class="block text-sm font-medium text-gray-700 mb-2">
+                        Task Title <span class="text-red-600" aria-label="required">*</span>
+                    </label>
+                    <input 
+                        type="text" 
+                        id="task-title"
+                        name="title"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                        placeholder="e.g., Buy groceries for dinner"
+                        maxlength="200"
+                        aria-required="true"
+                        aria-describedby="title-counter title-error"
+                        oninput="updateCharCounter('task-title', 'title-counter', 200); clearError('title-error')"
+                    />
+                    <div class="flex justify-between items-center mt-1">
+                        <span id="title-error" class="text-sm text-red-600 hidden" role="alert" aria-live="polite"></span>
+                        <span id="title-counter" class="text-sm text-gray-500 ml-auto">0/200</span>
+                    </div>
+                </div>
+                
+                <!-- Description Field -->
+                <div>
+                    <label for="task-description" class="block text-sm font-medium text-gray-700 mb-2">
+                        Description <span class="text-gray-500">(optional)</span>
+                    </label>
+                    <textarea 
+                        id="task-description"
+                        name="description"
+                        rows="4"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors resize-none"
+                        placeholder="Add more details about this task..."
+                        maxlength="1000"
+                        aria-describedby="description-counter"
+                        oninput="updateCharCounter('task-description', 'description-counter', 1000)"
+                    ></textarea>
+                    <div class="flex justify-end mt-1">
+                        <span id="description-counter" class="text-sm text-gray-500">0/1000</span>
+                    </div>
+                </div>
+                
+                <!-- Form Actions -->
+                <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t">
+                    <button 
+                        type="button"
+                        class="flex-1 px-6 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 active:bg-gray-100 transition-all"
+                        onclick="closeTaskForm()"
+                        aria-label="Cancel and close form">
+                        Cancel
+                    </button>
+                    <button 
+                        type="submit"
+                        class="flex-1 px-6 py-2 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 active:bg-primary-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                        id="save-btn"
+                        aria-label="Save new task">
+                        Save Task
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Success Toast (appears after saving) -->
+    <div 
+        id="success-toast"
+        class="fixed bottom-4 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg hidden transform transition-transform duration-300"
+        role="alert"
+        aria-live="polite">
+        <div class="flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+            </svg>
+            Task created successfully!
+        </div>
+    </div>
+    
+    <script>
+        // Track previously focused element for accessibility
+        let previouslyFocusedElement = null;
+        
+        // Open task form modal
+        function openTaskForm() {
+            previouslyFocusedElement = document.activeElement;
+            const modal = document.getElementById('task-modal');
+            modal.classList.remove('hidden');
+            
+            // Auto-focus on title field
+            setTimeout(() => {
+                document.getElementById('task-title').focus();
+            }, 100);
+            
+            // Trap focus within modal
+            trapFocus(modal);
+        }
+        
+        // Close task form modal
+        function closeTaskForm() {
+            const modal = document.getElementById('task-modal');
+            modal.classList.add('hidden');
+            
+            // Clear form
+            document.getElementById('task-form').reset();
+            updateCharCounter('task-title', 'title-counter', 200);
+            updateCharCounter('task-description', 'description-counter', 1000);
+            clearError('title-error');
+            
+            // Return focus to button that opened modal
+            if (previouslyFocusedElement) {
+                previouslyFocusedElement.focus();
+            }
+        }
+        
+        // Update character counter
+        function updateCharCounter(inputId, counterId, maxLength) {
+            const input = document.getElementById(inputId);
+            const counter = document.getElementById(counterId);
+            const currentLength = input.value.length;
+            
+            counter.textContent = `${currentLength}/${maxLength}`;
+            
+            // Warn when approaching limit
+            if (currentLength > maxLength * 0.9) {
+                counter.classList.add('text-orange-600', 'font-semibold');
+            } else {
+                counter.classList.remove('text-orange-600', 'font-semibold');
+            }
+            
+            // Error state when at limit
+            if (currentLength >= maxLength) {
+                counter.classList.add('text-red-600');
+            } else {
+                counter.classList.remove('text-red-600');
+            }
+        }
+        
+        // Clear error message
+        function clearError(errorId) {
+            const errorElement = document.getElementById(errorId);
+            errorElement.textContent = '';
+            errorElement.classList.add('hidden');
+        }
+        
+        // Show error message
+        function showError(errorId, message) {
+            const errorElement = document.getElementById(errorId);
+            errorElement.textContent = message;
+            errorElement.classList.remove('hidden');
+        }
+        
+        // Validate form
+        function validateForm() {
+            const title = document.getElementById('task-title').value.trim();
+            let isValid = true;
+            
+            // Clear previous errors
+            clearError('title-error');
+            
+            // Validate title
+            if (!title) {
+                showError('title-error', 'Title is required');
+                isValid = false;
+            } else if (title.length > 200) {
+                showError('title-error', 'Title must be 200 characters or less');
+                isValid = false;
+            }
+            
+            return isValid;
+        }
+        
+        // Handle form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            if (!validateForm()) {
+                // Focus on first error
+                document.getElementById('task-title').focus();
+                return;
+            }
+            
+            // Get form values
+            const title = document.getElementById('task-title').value.trim();
+            const description = document.getElementById('task-description').value.trim();
+            
+            // Simulate task creation (in real app, this would save to storage)
+            console.log('Creating task:', { title, description });
+            
+            // Close modal
+            closeTaskForm();
+            
+            // Show success toast
+            showSuccessToast();
+        }
+        
+        // Show success toast
+        function showSuccessToast() {
+            const toast = document.getElementById('success-toast');
+            toast.classList.remove('hidden');
+            
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+        
+        // Trap focus within modal (accessibility)
+        function trapFocus(element) {
+            const focusableElements = element.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            );
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+            
+            element.addEventListener('keydown', handleTabKey);
+            
+            function handleTabKey(e) {
+                if (e.key === 'Tab') {
+                    if (e.shiftKey && document.activeElement === firstElement) {
+                        e.preventDefault();
+                        lastElement.focus();
+                    } else if (!e.shiftKey && document.activeElement === lastElement) {
+                        e.preventDefault();
+                        firstElement.focus();
+                    }
+                } else if (e.key === 'Escape') {
+                    closeTaskForm();
+                }
+            }
+        }
+        
+        // Initialize character counters on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCharCounter('task-title', 'title-counter', 200);
+            updateCharCounter('task-description', 'description-counter', 1000);
+        });
+    </script>
+</body>
+</html>

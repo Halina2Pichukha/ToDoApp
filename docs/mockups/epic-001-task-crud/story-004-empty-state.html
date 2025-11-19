@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empty State - ToDoApp Mockup</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- 
+    DESIGN NOTES:
+    - Purpose: Shows helpful empty state when user has no tasks (STORY-004)
+    - Target users: New users or users who have completed/deleted all tasks
+    - User goals: Understand how to get started and be encouraged to create first task
+    - Key interactions:
+      * Prominent "Add Your First Task" button
+      * Clear, friendly messaging
+      * Visual icon to make state engaging
+    - Responsive behavior:
+      * Mobile: Centered content with adjusted spacing
+      * Desktop: Centered with more generous spacing
+    - Accessibility notes:
+      * Proper heading hierarchy (h1 for main title, h2 for empty state)
+      * High contrast text and icons
+      * Button has proper focus states
+      * Screen reader friendly messaging
+    - Edge cases handled:
+      * This IS the edge case - no tasks exist
+      * Provides clear path to create first task
+    -->
+    
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">My Tasks</h1>
+            <p class="text-gray-600">Create and manage your daily tasks</p>
+        </header>
+        
+        <!-- Empty State -->
+        <main class="bg-white rounded-lg shadow-sm">
+            <div class="flex flex-col items-center justify-center py-16 px-6 text-center">
+                <!-- Icon/Illustration -->
+                <div class="mb-6">
+                    <svg class="w-24 h-24 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
+                              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                </div>
+                
+                <!-- Heading -->
+                <h2 class="text-2xl font-semibold text-gray-900 mb-3">No tasks yet!</h2>
+                
+                <!-- Description -->
+                <p class="text-gray-600 mb-8 max-w-md">
+                    Create your first task to start organizing your day and stay on top of what matters.
+                </p>
+                
+                <!-- Call to Action -->
+                <button 
+                    class="inline-flex items-center px-8 py-3 bg-primary-600 text-white font-semibold rounded-lg shadow-md hover:bg-primary-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 active:bg-primary-800 transition-all"
+                    aria-label="Add your first task"
+                    onclick="showTaskForm()">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                    Add Your First Task
+                </button>
+                
+                <!-- Optional: Tips or Hints -->
+                <div class="mt-12 pt-8 border-t border-gray-200 w-full max-w-md">
+                    <p class="text-sm text-gray-500 mb-4 font-medium">Quick tips to get started:</p>
+                    <ul class="text-sm text-gray-600 space-y-2 text-left">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-primary-500 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Keep tasks specific and actionable</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-primary-500 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Check off completed tasks for satisfaction</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-primary-500 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Your tasks are saved automatically</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        function showTaskForm() {
+            alert('In the real app, this would open the task creation form. See story-001-create-task-form.html for the full form mockup.');
+        }
+    </script>
+</body>
+</html>
