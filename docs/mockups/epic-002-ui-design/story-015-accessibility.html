@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Compliance - ToDoApp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- DESIGN NOTES: WCAG 2.1 AA compliance demonstration (STORY-015) - keyboard navigation, screen readers, contrast ratios, ARIA labels -->
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary-600 focus:text-white">Skip to main content</a>
+    
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900">Accessibility Features</h1>
+            <p class="text-gray-700 mt-2">WCAG 2.1 AA compliant design</p>
+        </header>
+        
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-8">
+            <h2 class="font-semibold text-blue-900 mb-2">Try these accessibility features:</h2>
+            <ul class="text-blue-800 text-sm space-y-1 list-disc list-inside">
+                <li>Press <kbd class="px-2 py-1 bg-white rounded border text-xs">Tab</kbd> to navigate</li>
+                <li>Press <kbd class="px-2 py-1 bg-white rounded border text-xs">Enter</kbd> or <kbd class="px-2 py-1 bg-white rounded border text-xs">Space</kbd> to activate</li>
+                <li>Use a screen reader to hear ARIA labels</li>
+                <li>Notice high contrast text (minimum 4.5:1)</li>
+            </ul>
+        </div>
+        
+        <main id="main">
+            <section class="bg-white rounded-lg shadow p-6 mb-6" aria-labelledby="form-heading">
+                <h2 id="form-heading" class="text-xl font-semibold mb-4">Accessible Form</h2>
+                <form class="space-y-4">
+                    <div>
+                        <label for="task-title" class="block text-sm font-medium text-gray-900 mb-1">
+                            Task Title <span class="text-red-600" aria-label="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="task-title"
+                            name="title"
+                            required
+                            aria-required="true"
+                            aria-describedby="title-help title-error"
+                            class="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="Enter task title">
+                        <p id="title-help" class="text-xs text-gray-600 mt-1">Maximum 200 characters</p>
+                        <p id="title-error" class="text-xs text-red-600 mt-1 hidden" role="alert" aria-live="polite"></p>
+                    </div>
+                    
+                    <fieldset class="border border-gray-300 rounded-lg p-4">
+                        <legend class="text-sm font-medium text-gray-900 px-2">Priority</legend>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="radio" name="priority" value="high" class="w-4 h-4 text-blue-600 focus:ring-2 focus:ring-blue-500">
+                                <span class="ml-2 text-gray-900">High</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="priority" value="medium" checked class="w-4 h-4 text-blue-600 focus:ring-2 focus:ring-blue-500">
+                                <span class="ml-2 text-gray-900">Medium</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="priority" value="low" class="w-4 h-4 text-blue-600 focus:ring-2 focus:ring-blue-500">
+                                <span class="ml-2 text-gray-900">Low</span>
+                            </label>
+                        </div>
+                    </fieldset>
+                    
+                    <button type="submit" class="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Save new task">
+                        Save Task
+                    </button>
+                </form>
+            </section>
+            
+            <section class="bg-white rounded-lg shadow p-6" aria-labelledby="list-heading">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 id="list-heading" class="text-xl font-semibold">Task List</h2>
+                    <span class="text-sm text-gray-600" aria-live="polite">3 tasks total</span>
+                </div>
+                <ul class="space-y-3" role="list">
+                    <li class="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 focus-within:ring-2 focus-within:ring-blue-500">
+                        <input type="checkbox" id="task-1" class="w-5 h-5 mt-1 text-blue-600 rounded focus:ring-2 focus:ring-blue-500" aria-label="Mark 'Review documentation' as complete">
+                        <label for="task-1" class="flex-1 cursor-pointer">
+                            <span class="text-gray-900 font-medium">Review documentation</span>
+                            <span class="sr-only">. Created Nov 19, 2025</span>
+                        </label>
+                        <button aria-label="Edit task: Review documentation" class="px-3 py-1 text-sm text-blue-600 hover:bg-blue-50 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">Edit</button>
+                        <button aria-label="Delete task: Review documentation" class="px-3 py-1 text-sm text-red-600 hover:bg-red-50 rounded focus:outline-none focus:ring-2 focus:ring-red-500">Delete</button>
+                    </li>
+                </ul>
+            </section>
+        </main>
+        
+        <aside class="mt-8 p-6 bg-green-50 rounded-lg" aria-labelledby="wcag-heading">
+            <h3 id="wcag-heading" class="font-semibold text-green-900 mb-3">✓ WCAG 2.1 AA Compliance</h3>
+            <ul class="text-green-800 text-sm space-y-1 list-disc list-inside">
+                <li>Text contrast ≥ 4.5:1 (body text)</li>
+                <li>UI component contrast ≥ 3:1</li>
+                <li>Keyboard navigation fully supported</li>
+                <li>Focus indicators visible (2px ring)</li>
+                <li>ARIA labels for assistive technology</li>
+                <li>Semantic HTML5 elements</li>
+                <li>Skip navigation link</li>
+                <li>Form labels properly associated</li>
+            </ul>
+        </aside>
+    </div>
+</body>
+</html>

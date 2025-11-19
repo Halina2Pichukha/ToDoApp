@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Task Completion - ToDoApp Mockup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1' }
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        .task-completed { opacity: 0.7; }
+        .task-completed .task-title { text-decoration: line-through; color: #6b7280; }
+        .checkbox-animate { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- 
+    DESIGN NOTES:
+    - Purpose: Demonstrate toggling task completion status (STORY-005)
+    - Target users: All users managing task completion
+    - User goals: Mark tasks complete/incomplete with clear visual feedback
+    - Key interactions:
+      * Click checkbox to toggle completion
+      * Smooth animation on state change
+      * Visual distinction for completed tasks (strikethrough, opacity)
+      * Immediate visual feedback
+    - Responsive behavior: Works on all screen sizes
+    - Accessibility: ARIA labels announce state changes, keyboard accessible
+    - Edge cases: Multiple rapid toggles handled smoothly
+    -->
+    
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">Toggle Task Completion</h1>
+            <p class="text-gray-600">Click checkboxes to mark tasks as complete or incomplete</p>
+        </header>
+        
+        <div class="bg-white rounded-lg shadow-sm divide-y divide-gray-200">
+            <article class="p-4 hover:bg-gray-50 transition-colors" id="task-article-1">
+                <div class="flex items-center gap-4">
+                    <input 
+                        type="checkbox" 
+                        id="task-1"
+                        class="w-6 h-6 text-primary-600 border-2 border-gray-300 rounded checkbox-animate focus:ring-2 focus:ring-primary-500 cursor-pointer"
+                        aria-label="Mark 'Complete quarterly report' as complete"
+                        onchange="toggleTaskCompletion(1)">
+                    <div class="flex-1">
+                        <h3 id="title-1" class="task-title text-lg font-medium text-gray-900">
+                            Complete quarterly report
+                        </h3>
+                        <p class="text-sm text-gray-600 mt-1">Gather data and create presentation</p>
+                    </div>
+                    <span id="badge-1" class="hidden px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">
+                        ✓ Completed
+                    </span>
+                </div>
+            </article>
+            
+            <article class="p-4 hover:bg-gray-50 transition-colors task-completed" id="task-article-2">
+                <div class="flex items-center gap-4">
+                    <input 
+                        type="checkbox" 
+                        id="task-2"
+                        checked
+                        class="w-6 h-6 text-primary-600 border-2 border-gray-300 rounded checkbox-animate focus:ring-2 focus:ring-primary-500 cursor-pointer"
+                        aria-label="Mark 'Email team updates' as incomplete"
+                        onchange="toggleTaskCompletion(2)">
+                    <div class="flex-1">
+                        <h3 id="title-2" class="task-title text-lg font-medium">
+                            Email team updates
+                        </h3>
+                        <p class="text-sm text-gray-600 mt-1">Send weekly progress summary</p>
+                    </div>
+                    <span id="badge-2" class="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">
+                        ✓ Completed
+                    </span>
+                </div>
+            </article>
+            
+            <article class="p-4 hover:bg-gray-50 transition-colors" id="task-article-3">
+                <div class="flex items-center gap-4">
+                    <input 
+                        type="checkbox" 
+                        id="task-3"
+                        class="w-6 h-6 text-primary-600 border-2 border-gray-300 rounded checkbox-animate focus:ring-2 focus:ring-primary-500 cursor-pointer"
+                        aria-label="Mark 'Review pull requests' as complete"
+                        onchange="toggleTaskCompletion(3)">
+                    <div class="flex-1">
+                        <h3 id="title-3" class="task-title text-lg font-medium text-gray-900">
+                            Review pull requests
+                        </h3>
+                        <p class="text-sm text-gray-600 mt-1">Check code quality and provide feedback</p>
+                    </div>
+                    <span id="badge-3" class="hidden px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">
+                        ✓ Completed
+                    </span>
+                </div>
+            </article>
+        </div>
+        
+        <div id="toast" class="fixed bottom-4 right-4 bg-gray-900 text-white px-6 py-3 rounded-lg shadow-xl hidden" role="alert" aria-live="polite"></div>
+    </div>
+    
+    <script>
+        function toggleTaskCompletion(taskId) {
+            const checkbox = document.getElementById(`task-${taskId}`);
+            const article = document.getElementById(`task-article-${taskId}`);
+            const badge = document.getElementById(`badge-${taskId}`);
+            const toast = document.getElementById('toast');
+            
+            if (checkbox.checked) {
+                article.classList.add('task-completed');
+                badge.classList.remove('hidden');
+                showToast('Task marked as complete!');
+            } else {
+                article.classList.remove('task-completed');
+                badge.classList.add('hidden');
+                showToast('Task marked as incomplete');
+            }
+        }
+        
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 2000);
+        }
+    </script>
+</body>
+</html>
