@@ -14,16 +14,16 @@
                 extend: {
                     colors: {
                         primary: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            200: '#bae6fd',
-                            300: '#7dd3fc',
-                            400: '#38bdf8',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            800: '#075985',
-                            900: '#0c4a6e',
+                            50: '#fdf4ff',
+                            100: '#fae8ff',
+                            200: '#f5d0fe',
+                            300: '#f0abfc',
+                            400: '#e879f9',
+                            500: '#d946ef',
+                            600: '#c026d3',
+                            700: '#a21caf',
+                            800: '#86198f',
+                            900: '#701a75',
                         }
                     }
                 }
@@ -34,7 +34,7 @@
     <style>
         /* Custom focus styles for better accessibility */
         .focus-visible:focus {
-            outline: 2px solid #0ea5e9;
+            outline: 2px solid #d946ef;
             outline-offset: 2px;
         }
         
@@ -42,9 +42,30 @@
         button, input, textarea {
             transition: all 0.2s ease-in-out;
         }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(-45deg, #d946ef, #c026d3, #a21caf, #86198f);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
     </style>
 </head>
-<body class="bg-gray-50 min-h-screen">
+<body class="bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 min-h-screen">
     <!-- 
     DESIGN NOTES:
     - Purpose: Demonstrates the task creation form with validation and character counters (STORY-001)
@@ -74,32 +95,44 @@
       * Form closes without creating task on cancel
     -->
     
-    <div class="container mx-auto px-4 py-8 max-w-4xl">
-        <!-- Header -->
-        <header class="mb-8">
-            <h1 class="text-3xl font-bold text-gray-900 mb-2">My Tasks</h1>
-            <p class="text-gray-600">Create and manage your daily tasks</p>
+    <div class="container mx-auto px-4 py-8 max-w-5xl">
+        <!-- Header with gradient -->
+        <header class="mb-10">
+            <div class="gradient-bg text-white rounded-3xl shadow-2xl p-8 mb-6">
+                <div class="flex items-center mb-3">
+                    <svg class="w-12 h-12 mr-3 float-animation" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                    </svg>
+                    <h1 class="text-4xl font-bold">My Tasks</h1>
+                </div>
+                <p class="text-purple-100 text-lg">Create and manage your daily tasks beautifully</p>
+            </div>
         </header>
         
         <!-- Main content area (would show task list when populated) -->
         <main id="main-content" class="mb-8">
-            <!-- Add Task Button (Fixed positioning for easy access) -->
-            <div class="mb-6">
+            <!-- Add Task Button -->
+            <div class="mb-8 text-center">
                 <button 
                     id="add-task-btn"
-                    class="inline-flex items-center px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg shadow-md hover:bg-primary-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 active:bg-primary-800 transition-all"
+                    class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-lg font-bold rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-300 focus:ring-offset-2 active:scale-95 transition-all transform"
                     aria-label="Add new task"
                     onclick="openTaskForm()">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path>
                     </svg>
-                    Add Task
+                    Add New Task
                 </button>
             </div>
             
             <!-- Placeholder for task list -->
-            <div class="bg-white rounded-lg shadow p-6">
-                <p class="text-gray-500 text-center">Click "Add Task" to create your first task</p>
+            <div class="bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg p-8 border-2 border-purple-100">
+                <div class="text-center text-gray-500">
+                    <svg class="w-24 h-24 mx-auto mb-4 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <p class="text-lg font-medium">Click "Add New Task" to create your first task</p>
+                </div>
             </div>
         </main>
     </div>
@@ -107,73 +140,84 @@
     <!-- Task Creation Modal -->
     <div 
         id="task-modal" 
-        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-50"
+        class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 hidden z-50"
         role="dialog"
         aria-labelledby="modal-title"
         aria-modal="true">
         
-        <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <!-- Modal Header -->
-            <div class="bg-primary-600 text-white px-6 py-4 rounded-t-lg">
-                <h2 id="modal-title" class="text-xl font-semibold">Create New Task</h2>
+        <div class="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto transform transition-all">
+            <!-- Modal Header with gradient -->
+            <div class="gradient-bg text-white px-8 py-6 rounded-t-3xl">
+                <div class="flex items-center">
+                    <svg class="w-10 h-10 mr-4 float-animation" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                    <h2 id="modal-title" class="text-3xl font-bold">Create New Task</h2>
+                </div>
             </div>
             
             <!-- Modal Body -->
-            <form id="task-form" class="p-6 space-y-6" onsubmit="handleSubmit(event)">
+            <form id="task-form" class="p-8 space-y-6" onsubmit="handleSubmit(event)">
                 <!-- Title Field -->
                 <div>
-                    <label for="task-title" class="block text-sm font-medium text-gray-700 mb-2">
-                        Task Title <span class="text-red-600" aria-label="required">*</span>
+                    <label for="task-title" class="block text-sm font-bold text-gray-800 mb-3 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
+                        </svg>
+                        Task Title <span class="text-red-500 ml-1" aria-label="required">*</span>
                     </label>
                     <input 
                         type="text" 
                         id="task-title"
                         name="title"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                        class="w-full px-5 py-4 border-2 border-purple-200 rounded-xl focus:ring-4 focus:ring-purple-200 focus:border-purple-500 transition-all text-lg bg-purple-50/30"
                         placeholder="e.g., Buy groceries for dinner"
                         maxlength="200"
                         aria-required="true"
                         aria-describedby="title-counter title-error"
                         oninput="updateCharCounter('task-title', 'title-counter', 200); clearError('title-error')"
                     />
-                    <div class="flex justify-between items-center mt-1">
-                        <span id="title-error" class="text-sm text-red-600 hidden" role="alert" aria-live="polite"></span>
-                        <span id="title-counter" class="text-sm text-gray-500 ml-auto">0/200</span>
+                    <div class="flex justify-between items-center mt-2">
+                        <span id="title-error" class="text-sm text-red-600 font-semibold hidden" role="alert" aria-live="polite"></span>
+                        <span id="title-counter" class="text-sm text-purple-600 font-medium ml-auto">0/200</span>
                     </div>
                 </div>
                 
                 <!-- Description Field -->
                 <div>
-                    <label for="task-description" class="block text-sm font-medium text-gray-700 mb-2">
-                        Description <span class="text-gray-500">(optional)</span>
+                    <label for="task-description" class="block text-sm font-bold text-gray-800 mb-3 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path>
+                        </svg>
+                        Description <span class="text-gray-500 text-xs font-normal ml-2">(optional)</span>
                     </label>
                     <textarea 
                         id="task-description"
                         name="description"
-                        rows="4"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors resize-none"
+                        rows="5"
+                        class="w-full px-5 py-4 border-2 border-purple-200 rounded-xl focus:ring-4 focus:ring-purple-200 focus:border-purple-500 transition-all resize-none text-lg bg-purple-50/30"
                         placeholder="Add more details about this task..."
                         maxlength="1000"
                         aria-describedby="description-counter"
                         oninput="updateCharCounter('task-description', 'description-counter', 1000)"
                     ></textarea>
-                    <div class="flex justify-end mt-1">
-                        <span id="description-counter" class="text-sm text-gray-500">0/1000</span>
+                    <div class="flex justify-end mt-2">
+                        <span id="description-counter" class="text-sm text-purple-600 font-medium">0/1000</span>
                     </div>
                 </div>
                 
                 <!-- Form Actions -->
-                <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t">
+                <div class="flex flex-col sm:flex-row gap-4 pt-6 border-t-2 border-purple-100">
                     <button 
                         type="button"
-                        class="flex-1 px-6 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 active:bg-gray-100 transition-all"
+                        class="flex-1 px-8 py-4 border-2 border-purple-300 text-purple-700 font-bold rounded-xl hover:bg-purple-50 focus:outline-none focus:ring-4 focus:ring-purple-200 active:bg-purple-100 transition-all text-lg"
                         onclick="closeTaskForm()"
                         aria-label="Cancel and close form">
                         Cancel
                     </button>
                     <button 
                         type="submit"
-                        class="flex-1 px-6 py-2 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 active:bg-primary-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                        class="flex-1 px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-xl hover:shadow-xl hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-300 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed transition-all text-lg transform"
                         id="save-btn"
                         aria-label="Save new task">
                         Save Task
@@ -186,14 +230,16 @@
     <!-- Success Toast (appears after saving) -->
     <div 
         id="success-toast"
-        class="fixed bottom-4 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg hidden transform transition-transform duration-300"
+        class="fixed bottom-8 right-8 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-8 py-4 rounded-2xl shadow-2xl hidden transform transition-all duration-300"
         role="alert"
         aria-live="polite">
         <div class="flex items-center">
-            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-            </svg>
-            Task created successfully!
+            <div class="bg-white/20 rounded-full p-2 mr-3">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+            </div>
+            <span class="font-bold text-lg">Task created successfully!</span>
         </div>
     </div>
     
