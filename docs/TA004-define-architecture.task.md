@@ -1,1 +1,0 @@
-I want to analyze requirements in docs/requirements folder, epics and stories in docs/tasks/epics and docs/tasks/stories folders and mockups in docs/mockups folder. And define application architecture in the docs/architecture folder. Some initial technical requirements: Java 17, SpringBoot for backend, JS React + Tailwind CSS for frontend, SQLite database.
