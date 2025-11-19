@@ -1,0 +1,33 @@
+name: Create Stage3 Design Mockups Branch
+
+on:
+  workflow_dispatch:
+
+jobs:
+  create-branch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Create and push stage3-design-mockups branch
+        run: |
+          # Configure git
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Create branch from main if it doesn't exist on remote
+          if git ls-remote --heads origin stage3-design-mockups | grep stage3-design-mockups; then
+            echo "Branch stage3-design-mockups already exists on remote"
+          else
+            echo "Creating stage3-design-mockups branch from main..."
+            git checkout main
+            git checkout -b stage3-design-mockups
+            git push origin stage3-design-mockups
+            echo "✓ Successfully created and pushed stage3-design-mockups branch!"
+          fi
