@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoApp Design Mockups - Catalog</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#fdf4ff',
+                            100: '#fae8ff',
+                            200: '#f5d0fe',
+                            300: '#f0abfc',
+                            400: '#e879f9',
+                            500: '#d946ef',
+                            600: '#c026d3',
+                            700: '#a21caf',
+                            800: '#86198f',
+                            900: '#701a75',
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .gradient-bg {
+            background: linear-gradient(-45deg, #d946ef, #c026d3, #a21caf, #86198f);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 min-h-screen">
+    <!-- 
+    DESIGN NOTES:
+    - Purpose: Catalog/index page for all ToDoApp design mockups
+    - Target users: Designers, developers, stakeholders reviewing mockups
+    - User goals: Navigate to specific mockups, understand mockup structure
+    - Key interactions: Click links to open mockups in same/new tab
+    - Responsive behavior: Single column on mobile, organized grid on larger screens
+    - Accessibility notes: Semantic HTML, proper heading hierarchy, keyboard navigable links
+    - Edge cases handled: N/A for catalog page
+    -->
+    
+    <div class="container mx-auto px-4 py-12 max-w-7xl">
+        <!-- Header with Gradient -->
+        <header class="mb-16 text-center">
+            <div class="gradient-bg text-white rounded-3xl shadow-2xl p-12 mb-8">
+                <div class="flex items-center justify-center mb-6">
+                    <svg class="w-16 h-16 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                    </svg>
+                    <h1 class="text-5xl font-bold">ToDoApp Design Mockups</h1>
+                </div>
+                <p class="text-xl text-purple-100 max-w-3xl mx-auto">
+                    Beautiful, user-centered UI/UX mockups demonstrating all features with accessibility and responsive design
+                </p>
+            </div>
+            
+            <div class="bg-white/80 backdrop-blur-sm border-2 border-purple-200 rounded-2xl p-6 shadow-lg max-w-4xl mx-auto">
+                <h2 class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+                    ✨ Mockup Features
+                </h2>
+                <div class="grid md:grid-cols-2 gap-4 text-left">
+                    <div class="flex items-start space-x-3">
+                        <svg class="w-6 h-6 text-purple-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>
+                        <span class="text-gray-700">Self-contained HTML - open directly in browser</span>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <svg class="w-6 h-6 text-purple-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>
+                        <span class="text-gray-700">Interactive states with smooth animations</span>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <svg class="w-6 h-6 text-purple-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>
+                        <span class="text-gray-700">Mobile-first responsive design (320px+)</span>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <svg class="w-6 h-6 text-purple-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>
+                        <span class="text-gray-700">WCAG 2.1 AA accessibility compliant</span>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <svg class="w-6 h-6 text-purple-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>
+                        <span class="text-gray-700">Realistic content and edge cases</span>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <svg class="w-6 h-6 text-purple-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>
+                        <span class="text-gray-700">Beautiful modern design</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- EPIC-001: Task CRUD Operations -->
+        <section class="mb-16">
+            <div class="flex items-center mb-6">
+                <div class="bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl p-3 mr-4">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900">EPIC-001: Task CRUD Operations</h2>
+                    <p class="text-gray-600 mt-1">Core task management functionality</p>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="epic-001-task-crud/story-001-create-task-form.html" 
+                   class="group card-hover block bg-white rounded-2xl shadow-lg hover:shadow-2xl border-2 border-purple-100 overflow-hidden focus:outline-none focus:ring-4 focus:ring-purple-300">
+                    <div class="bg-gradient-to-br from-purple-500 to-pink-500 p-6 text-white">
+                        <svg class="w-12 h-12 mb-3 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                        <h3 class="text-xl font-bold">Create Task Form</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">Task creation form with real-time validation and character counters</p>
+                        <div class="flex items-center text-purple-600 font-semibold group-hover:translate-x-2 transition-transform">
+                            View Mockup
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="epic-001-task-crud/story-003-display-task-list.html" 
+                   class="group card-hover block bg-white rounded-2xl shadow-lg hover:shadow-2xl border-2 border-purple-100 overflow-hidden focus:outline-none focus:ring-4 focus:ring-purple-300">
+                    <div class="bg-gradient-to-br from-blue-500 to-purple-500 p-6 text-white">
+                        <svg class="w-12 h-12 mb-3 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+                        </svg>
+                        <h3 class="text-xl font-bold">Display Task List</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">Task list with sorting, status indicators, and smooth interactions</p>
+                        <div class="flex items-center text-purple-600 font-semibold group-hover:translate-x-2 transition-transform">
+                            View Mockup
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="epic-001-task-crud/story-004-empty-state.html" 
+                   class="group card-hover block bg-white rounded-2xl shadow-lg hover:shadow-2xl border-2 border-purple-100 overflow-hidden focus:outline-none focus:ring-4 focus:ring-purple-300">
+                    <div class="bg-gradient-to-br from-pink-500 to-purple-500 p-6 text-white">
+                        <svg class="w-12 h-12 mb-3 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path>
+                        </svg>
+                        <h3 class="text-xl font-bold">Empty State</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">Helpful empty state design for first-time users</p>
+                        <div class="flex items-center text-purple-600 font-semibold group-hover:translate-x-2 transition-transform">
+                            View Mockup
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="epic-001-task-crud/story-005-toggle-completion.html" 
+                   class="group card-hover block bg-white rounded-2xl shadow-lg hover:shadow-2xl border-2 border-purple-100 overflow-hidden focus:outline-none focus:ring-4 focus:ring-purple-300">
+                    <div class="bg-gradient-to-br from-green-500 to-teal-500 p-6 text-white">
+                        <svg class="w-12 h-12 mb-3 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <h3 class="text-xl font-bold">Toggle Completion</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">Mark tasks complete with smooth animations and visual feedback</p>
+                        <div class="flex items-center text-purple-600 font-semibold group-hover:translate-x-2 transition-transform">
+                            View Mockup
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="epic-001-task-crud/story-006-edit-task-form.html" 
+                   class="group card-hover block bg-white rounded-2xl shadow-lg hover:shadow-2xl border-2 border-purple-100 overflow-hidden focus:outline-none focus:ring-4 focus:ring-purple-300">
+                    <div class="bg-gradient-to-br from-yellow-500 to-orange-500 p-6 text-white">
+                        <svg class="w-12 h-12 mb-3 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                        </svg>
+                        <h3 class="text-xl font-bold">Edit Task Form</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">Edit existing tasks with pre-filled data</p>
+                        <div class="flex items-center text-purple-600 font-semibold group-hover:translate-x-2 transition-transform">
+                            View Mockup
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="epic-001-task-crud/story-008-delete-confirmation.html" 
+                   class="group card-hover block bg-white rounded-2xl shadow-lg hover:shadow-2xl border-2 border-purple-100 overflow-hidden focus:outline-none focus:ring-4 focus:ring-purple-300">
+                    <div class="bg-gradient-to-br from-red-500 to-pink-500 p-6 text-white">
+                        <svg class="w-12 h-12 mb-3 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                        </svg>
+                        <h3 class="text-xl font-bold">Delete Confirmation</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">Confirm task deletion to prevent accidents</p>
+                        <div class="flex items-center text-purple-600 font-semibold group-hover:translate-x-2 transition-transform">
+                            View Mockup
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="epic-001-task-crud/all-states-demo.html" 
+                   class="group card-hover block bg-gradient-to-br from-purple-600 via-pink-600 to-blue-600 rounded-2xl shadow-xl hover:shadow-2xl overflow-hidden focus:outline-none focus:ring-4 focus:ring-purple-300 md:col-span-2 lg:col-span-3">
+                    <div class="p-8 text-white">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="flex items-center mb-4">
+                                    <svg class="w-14 h-14 mr-4 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                                    </svg>
+                                    <h3 class="text-3xl font-bold">🎨 All States Interactive Demo</h3>
+                                </div>
+                                <p class="text-purple-100 text-lg mb-4">Comprehensive demonstration of all interactive states and behaviors in one place</p>
+                                <div class="flex items-center text-white font-bold text-lg group-hover:translate-x-2 transition-transform">
+                                    Explore Interactive Demo
+                                    <svg class="w-6 h-6 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- EPIC-002: User Interface Design -->
+        <section class="mb-16">
+            <div class="flex items-center mb-6">
+                <div class="bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl p-3 mr-4">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900">EPIC-002: User Interface & Design</h2>
+                    <p class="text-gray-600 mt-1">Visual design, responsive layouts, and accessibility</p>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="epic-002-ui-design/story-011-responsive-layout.html" 
+                   class="group card-hover block bg-white rounded-2xl shadow-lg hover:shadow-2xl border-2 border-blue-100 overflow-hidden focus:outline-none focus:ring-4 focus:ring-blue-300">
+                    <div class="bg-gradient-to-br from-blue-500 to-cyan-500 p-6 text-white">
+                        <svg class="w-12 h-12 mb-3 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                        </svg>
+                        <h3 class="text-xl font-bold">Responsive Layout</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">Mobile-first responsive foundation with viewport indicator</p>
+                        <div class="flex items-center text-blue-600 font-semibold group-hover:translate-x-2 transition-transform">
+                            View Mockup
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="epic-002-ui-design/story-014-feedback-states.html" 
+                   class="group card-hover block bg-white rounded-2xl shadow-lg hover:shadow-2xl border-2 border-blue-100 overflow-hidden focus:outline-none focus:ring-4 focus:ring-blue-300">
+                    <div class="bg-gradient-to-br from-indigo-500 to-purple-500 p-6 text-white">
+                        <svg class="w-12 h-12 mb-3 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <h3 class="text-xl font-bold">Interactive Feedback</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">All UI states: hover, focus, active, disabled, loading, errors</p>
+                        <div class="flex items-center text-blue-600 font-semibold group-hover:translate-x-2 transition-transform">
+                            View Mockup
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="epic-002-ui-design/story-015-accessibility.html" 
+                   class="group card-hover block bg-white rounded-2xl shadow-lg hover:shadow-2xl border-2 border-blue-100 overflow-hidden focus:outline-none focus:ring-4 focus:ring-blue-300">
+                    <div class="bg-gradient-to-br from-teal-500 to-green-500 p-6 text-white">
+                        <svg class="w-12 h-12 mb-3 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                        <h3 class="text-xl font-bold">Accessibility</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">WCAG 2.1 AA compliant with keyboard nav and ARIA</p>
+                        <div class="flex items-center text-blue-600 font-semibold group-hover:translate-x-2 transition-transform">
+                            View Mockup
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- EPIC-003: Data Persistence -->
+        <section class="mb-16">
+            <div class="flex items-center mb-6">
+                <div class="bg-gradient-to-r from-orange-600 to-red-600 rounded-xl p-3 mr-4">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900">EPIC-003: Data Persistence Layer</h2>
+                    <p class="text-gray-600 mt-1">Error handling and loading states</p>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <a href="epic-003-data-persistence/storage-error-states.html" 
+                   class="group card-hover block bg-white rounded-2xl shadow-lg hover:shadow-2xl border-2 border-orange-100 overflow-hidden focus:outline-none focus:ring-4 focus:ring-orange-300">
+                    <div class="bg-gradient-to-br from-red-500 to-orange-500 p-6 text-white">
+                        <svg class="w-12 h-12 mb-3 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                        </svg>
+                        <h3 class="text-xl font-bold">Storage Error States</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">Graceful error handling for quota, disabled storage, corruption</p>
+                        <div class="flex items-center text-orange-600 font-semibold group-hover:translate-x-2 transition-transform">
+                            View Mockup
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="epic-003-data-persistence/data-loading-states.html" 
+                   class="group card-hover block bg-white rounded-2xl shadow-lg hover:shadow-2xl border-2 border-orange-100 overflow-hidden focus:outline-none focus:ring-4 focus:ring-orange-300">
+                    <div class="bg-gradient-to-br from-yellow-500 to-orange-500 p-6 text-white">
+                        <svg class="w-12 h-12 mb-3 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                        </svg>
+                        <h3 class="text-xl font-bold">Data Loading States</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">Loading indicators, skeleton UI, and spinners</p>
+                        <div class="flex items-center text-orange-600 font-semibold group-hover:translate-x-2 transition-transform">
+                            View Mockup
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="mt-20 pt-12 border-t-2 border-purple-200">
+            <div class="text-center">
+                <div class="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+                    <p class="text-2xl font-bold">ToDoApp Design Mockups</p>
+                </div>
+                <p class="text-gray-600 mb-2">
+                    Created following 
+                    <a href="../roles/ui-design.role.md" class="text-purple-600 hover:text-purple-700 underline font-semibold focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 rounded">
+                        UI/UX Design Standards
+                    </a>
+                </p>
+                <div class="flex items-center justify-center space-x-4 text-sm text-gray-500">
+                    <span class="flex items-center">
+                        <svg class="w-4 h-4 mr-1 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>
+                        WCAG 2.1 AA Compliant
+                    </span>
+                    <span class="flex items-center">
+                        <svg class="w-4 h-4 mr-1 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>
+                        Self-Contained HTML
+                    </span>
+                    <span class="flex items-center">
+                        <svg class="w-4 h-4 mr-1 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>
+                        Mobile-First Design
+                    </span>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List Display - ToDoApp Mockup</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+    
+    <style>
+        /* Smooth checkbox transitions */
+        input[type="checkbox"] {
+            transition: all 0.2s ease-in-out;
+        }
+        
+        /* Completed task styling */
+        .task-completed {
+            opacity: 0.7;
+        }
+        
+        .task-completed .task-title {
+            text-decoration: line-through;
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- 
+    DESIGN NOTES:
+    - Purpose: Display list of tasks with status indicators and actions (STORY-003)
+    - Target users: All users viewing their task list
+    - User goals: See all tasks, quickly scan what needs to be done, identify completed tasks
+    - Key interactions:
+      * Toggle task completion via checkbox
+      * Click Edit button to modify task
+      * Click Delete button to remove task
+      * Hover states on interactive elements
+      * Click on task to expand/view details (future enhancement)
+    - Responsive behavior:
+      * Mobile (< 640px): Stacked layout, full-width tasks, compact actions
+      * Tablet (640px-1024px): Comfortable spacing, visible actions
+      * Desktop (≥ 1024px): Maximum width container, spacious layout
+    - Accessibility notes:
+      * Checkboxes have aria-label describing task
+      * Buttons have clear aria-labels
+      * Focus indicators on all interactive elements
+      * Completed tasks announced to screen readers
+      * Semantic HTML (list elements, proper headings)
+    - Edge cases handled:
+      * Mix of completed and incomplete tasks shown
+      * Long task titles wrapped properly
+      * Multiple tasks with different dates
+      * Hover/focus states clearly visible
+    -->
+    
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <header class="mb-8">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-900 mb-2">My Tasks</h1>
+                    <p class="text-gray-600">Create and manage your daily tasks</p>
+                </div>
+                <button 
+                    class="inline-flex items-center px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg shadow-md hover:bg-primary-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 active:bg-primary-800 transition-all"
+                    aria-label="Add new task">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                    Add Task
+                </button>
+            </div>
+        </header>
+        
+        <!-- Task Summary -->
+        <div class="mb-6 flex items-center justify-between bg-white rounded-lg shadow-sm px-6 py-4">
+            <div class="flex items-center space-x-6">
+                <div>
+                    <span class="text-2xl font-bold text-gray-900">5</span>
+                    <span class="text-sm text-gray-600 ml-1">total tasks</span>
+                </div>
+                <div class="h-8 w-px bg-gray-300"></div>
+                <div>
+                    <span class="text-2xl font-bold text-primary-600">3</span>
+                    <span class="text-sm text-gray-600 ml-1">remaining</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Task List -->
+        <main>
+            <div class="bg-white rounded-lg shadow-sm divide-y divide-gray-200">
+                <!-- Task Item 1 - Incomplete -->
+                <article class="p-4 hover:bg-gray-50 transition-colors">
+                    <div class="flex items-start gap-4">
+                        <!-- Checkbox -->
+                        <div class="flex-shrink-0 pt-1">
+                            <input 
+                                type="checkbox" 
+                                id="task-1"
+                                class="w-5 h-5 text-primary-600 border-gray-300 rounded focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 cursor-pointer"
+                                aria-label="Mark 'Buy groceries for dinner' as complete"
+                                onchange="toggleTask(1)">
+                        </div>
+                        
+                        <!-- Task Content -->
+                        <div class="flex-1 min-w-0">
+                            <h3 class="task-title text-lg font-medium text-gray-900 mb-1">
+                                Buy groceries for dinner
+                            </h3>
+                            <p class="text-sm text-gray-600 mb-2">
+                                Pick up fresh vegetables, chicken, and rice from the store
+                            </p>
+                            <div class="flex items-center text-xs text-gray-500">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                Created Nov 19, 2025
+                            </div>
+                        </div>
+                        
+                        <!-- Actions -->
+                        <div class="flex-shrink-0 flex gap-2">
+                            <button 
+                                class="px-3 py-1.5 text-sm font-medium text-primary-600 hover:bg-primary-50 rounded focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors"
+                                aria-label="Edit task: Buy groceries for dinner">
+                                Edit
+                            </button>
+                            <button 
+                                class="px-3 py-1.5 text-sm font-medium text-red-600 hover:bg-red-50 rounded focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors"
+                                aria-label="Delete task: Buy groceries for dinner">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Task Item 2 - Completed -->
+                <article class="p-4 hover:bg-gray-50 transition-colors task-completed">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0 pt-1">
+                            <input 
+                                type="checkbox" 
+                                id="task-2"
+                                checked
+                                class="w-5 h-5 text-primary-600 border-gray-300 rounded focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 cursor-pointer"
+                                aria-label="Mark 'Complete project proposal' as incomplete"
+                                onchange="toggleTask(2)">
+                        </div>
+                        
+                        <div class="flex-1 min-w-0">
+                            <h3 class="task-title text-lg font-medium">
+                                Complete project proposal
+                            </h3>
+                            <p class="text-sm text-gray-600 mb-2">
+                                Finalize slides and send to team for review
+                            </p>
+                            <div class="flex items-center text-xs text-gray-500">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                Created Nov 18, 2025
+                            </div>
+                        </div>
+                        
+                        <div class="flex-shrink-0 flex gap-2">
+                            <button 
+                                class="px-3 py-1.5 text-sm font-medium text-primary-600 hover:bg-primary-50 rounded focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors"
+                                aria-label="Edit task: Complete project proposal">
+                                Edit
+                            </button>
+                            <button 
+                                class="px-3 py-1.5 text-sm font-medium text-red-600 hover:bg-red-50 rounded focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors"
+                                aria-label="Delete task: Complete project proposal">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Task Item 3 - Incomplete -->
+                <article class="p-4 hover:bg-gray-50 transition-colors">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0 pt-1">
+                            <input 
+                                type="checkbox" 
+                                id="task-3"
+                                class="w-5 h-5 text-primary-600 border-gray-300 rounded focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 cursor-pointer"
+                                aria-label="Mark 'Schedule dentist appointment' as complete"
+                                onchange="toggleTask(3)">
+                        </div>
+                        
+                        <div class="flex-1 min-w-0">
+                            <h3 class="task-title text-lg font-medium text-gray-900">
+                                Schedule dentist appointment
+                            </h3>
+                            <div class="flex items-center text-xs text-gray-500 mt-2">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                Created Nov 17, 2025
+                            </div>
+                        </div>
+                        
+                        <div class="flex-shrink-0 flex gap-2">
+                            <button 
+                                class="px-3 py-1.5 text-sm font-medium text-primary-600 hover:bg-primary-50 rounded focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors"
+                                aria-label="Edit task: Schedule dentist appointment">
+                                Edit
+                            </button>
+                            <button 
+                                class="px-3 py-1.5 text-sm font-medium text-red-600 hover:bg-red-50 rounded focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors"
+                                aria-label="Delete task: Schedule dentist appointment">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Task Item 4 - Incomplete with long text -->
+                <article class="p-4 hover:bg-gray-50 transition-colors">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0 pt-1">
+                            <input 
+                                type="checkbox" 
+                                id="task-4"
+                                class="w-5 h-5 text-primary-600 border-gray-300 rounded focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 cursor-pointer"
+                                aria-label="Mark 'Review and update documentation for the new features in the application' as complete"
+                                onchange="toggleTask(4)">
+                        </div>
+                        
+                        <div class="flex-1 min-w-0">
+                            <h3 class="task-title text-lg font-medium text-gray-900">
+                                Review and update documentation for the new features in the application
+                            </h3>
+                            <p class="text-sm text-gray-600 mb-2">
+                                Go through all new features added in version 2.0 and ensure documentation is complete, accurate, and includes examples. Pay special attention to the API changes and update code samples accordingly.
+                            </p>
+                            <div class="flex items-center text-xs text-gray-500">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                Created Nov 16, 2025
+                            </div>
+                        </div>
+                        
+                        <div class="flex-shrink-0 flex gap-2">
+                            <button 
+                                class="px-3 py-1.5 text-sm font-medium text-primary-600 hover:bg-primary-50 rounded focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors"
+                                aria-label="Edit task">
+                                Edit
+                            </button>
+                            <button 
+                                class="px-3 py-1.5 text-sm font-medium text-red-600 hover:bg-red-50 rounded focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors"
+                                aria-label="Delete task">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Task Item 5 - Completed -->
+                <article class="p-4 hover:bg-gray-50 transition-colors task-completed">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0 pt-1">
+                            <input 
+                                type="checkbox" 
+                                id="task-5"
+                                checked
+                                class="w-5 h-5 text-primary-600 border-gray-300 rounded focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 cursor-pointer"
+                                aria-label="Mark 'Pay utility bills' as incomplete"
+                                onchange="toggleTask(5)">
+                        </div>
+                        
+                        <div class="flex-1 min-w-0">
+                            <h3 class="task-title text-lg font-medium">
+                                Pay utility bills
+                            </h3>
+                            <div class="flex items-center text-xs text-gray-500 mt-2">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                Created Nov 15, 2025
+                            </div>
+                        </div>
+                        
+                        <div class="flex-shrink-0 flex gap-2">
+                            <button 
+                                class="px-3 py-1.5 text-sm font-medium text-primary-600 hover:bg-primary-50 rounded focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors"
+                                aria-label="Edit task: Pay utility bills">
+                                Edit
+                            </button>
+                            <button 
+                                class="px-3 py-1.5 text-sm font-medium text-red-600 hover:bg-red-50 rounded focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors"
+                                aria-label="Delete task: Pay utility bills">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        function toggleTask(taskId) {
+            const checkbox = document.getElementById(`task-${taskId}`);
+            const article = checkbox.closest('article');
+            
+            if (checkbox.checked) {
+                article.classList.add('task-completed');
+            } else {
+                article.classList.remove('task-completed');
+            }
+            
+            // Update summary counts (in real app, this would be calculated from actual data)
+            console.log(`Task ${taskId} toggled to ${checkbox.checked ? 'completed' : 'incomplete'}`);
+        }
+    </script>
+</body>
+</html>
