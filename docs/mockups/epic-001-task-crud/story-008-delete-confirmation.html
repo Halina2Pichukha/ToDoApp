@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Task Confirmation - ToDoApp Mockup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { primary: { 500: '#0ea5e9', 600: '#0284c7' } } } }
+        };
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- 
+    DESIGN NOTES:
+    - Purpose: Prevent accidental task deletion with confirmation dialog (STORY-008/009)
+    - Target users: Users deleting tasks
+    - User goals: Safely delete tasks with option to cancel
+    - Key interactions: Click Delete shows modal, Confirm permanently removes task
+    - Responsive behavior: Modal centers on all screens
+    - Accessibility: Focus trap, Escape to cancel, clear messaging
+    - Edge cases: Permanent deletion warning, no undo mentioned
+    -->
+    
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">Delete Task Confirmation</h1>
+            <p class="text-gray-600">Requires confirmation to prevent accidental deletion</p>
+        </header>
+        
+        <div class="bg-white rounded-lg shadow-sm p-4">
+            <div class="flex items-start gap-4">
+                <input type="checkbox" class="w-5 h-5 mt-1 text-primary-600 border-gray-300 rounded">
+                <div class="flex-1">
+                    <h3 class="text-lg font-medium text-gray-900">Buy groceries for dinner</h3>
+                    <p class="text-sm text-gray-600 mt-1">Pick up fresh vegetables, chicken, and rice</p>
+                </div>
+                <button 
+                    onclick="showDeleteConfirmation()"
+                    class="px-3 py-1.5 text-sm font-medium text-red-600 hover:bg-red-50 rounded focus:outline-none focus:ring-2 focus:ring-red-500">
+                    Delete
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="delete-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-50" role="dialog" aria-labelledby="delete-title" aria-modal="true">
+        <div class="bg-white rounded-lg shadow-xl max-w-md w-full">
+            <div class="p-6">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <h2 id="delete-title" class="text-lg font-semibold text-gray-900">Delete Task?</h2>
+                        <p class="text-sm text-gray-600 mt-1">This action cannot be undone.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                    <p class="text-sm font-medium text-gray-900 mb-1">Task to be deleted:</p>
+                    <p class="text-sm text-gray-700">"Buy groceries for dinner"</p>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button 
+                        type="button"
+                        onclick="closeDeleteModal()"
+                        class="flex-1 px-6 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-400">
+                        Cancel
+                    </button>
+                    <button 
+                        type="button"
+                        onclick="confirmDelete()"
+                        class="flex-1 px-6 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                        Delete Task
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="deleted-toast" class="fixed bottom-4 right-4 bg-gray-900 text-white px-6 py-3 rounded-lg shadow-xl hidden" role="alert">
+        Task deleted successfully
+    </div>
+    
+    <script>
+        function showDeleteConfirmation() {
+            document.getElementById('delete-modal').classList.remove('hidden');
+        }
+        
+        function closeDeleteModal() {
+            document.getElementById('delete-modal').classList.add('hidden');
+        }
+        
+        function confirmDelete() {
+            closeDeleteModal();
+            const toast = document.getElementById('deleted-toast');
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 3000);
+        }
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeDeleteModal();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All States Demo - ToDoApp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { primary: { 50: '#f0f9ff', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1' } } } }
+        };
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- 
+    DESIGN NOTES:
+    - Purpose: Comprehensive demonstration of all interactive states and behaviors
+    - Shows: Empty state, loading state, error state, populated list, form validation
+    - Target users: Designers, developers, stakeholders
+    - Interactive: Switch between states using buttons
+    -->
+    
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <header class="mb-8 text-center">
+            <h1 class="text-4xl font-bold text-gray-900 mb-3">All States Demonstration</h1>
+            <p class="text-lg text-gray-600 mb-6">Interactive showcase of all UI states and behaviors</p>
+            
+            <div class="flex flex-wrap justify-center gap-2">
+                <button onclick="showState('empty')" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:ring-2 focus:ring-primary-500">Empty State</button>
+                <button onclick="showState('loading')" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:ring-2 focus:ring-primary-500">Loading State</button>
+                <button onclick="showState('error')" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:ring-2 focus:ring-primary-500">Error State</button>
+                <button onclick="showState('list')" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:ring-2 focus:ring-primary-500">Task List</button>
+                <button onclick="showState('form')" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:ring-2 focus:ring-primary-500">Create Form</button>
+            </div>
+        </header>
+        
+        <!-- Empty State -->
+        <div id="state-empty" class="state-container hidden">
+            <div class="bg-white rounded-lg shadow-sm py-16 px-6 text-center">
+                <svg class="w-24 h-24 text-gray-300 mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <h2 class="text-2xl font-semibold text-gray-900 mb-3">No tasks yet!</h2>
+                <p class="text-gray-600 mb-8">Create your first task to start organizing your day</p>
+                <button class="px-8 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700">Add Your First Task</button>
+            </div>
+        </div>
+        
+        <!-- Loading State -->
+        <div id="state-loading" class="state-container hidden">
+            <div class="bg-white rounded-lg shadow-sm p-8">
+                <div class="animate-pulse space-y-4">
+                    <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+                    <div class="h-4 bg-gray-200 rounded w-1/2"></div>
+                    <div class="h-4 bg-gray-200 rounded w-5/6"></div>
+                    <div class="h-4 bg-gray-200 rounded w-2/3"></div>
+                </div>
+                <div class="flex justify-center items-center py-8">
+                    <svg class="animate-spin h-8 w-8 text-primary-600" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span class="ml-3 text-gray-600">Loading tasks...</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Error State -->
+        <div id="state-error" class="state-container hidden">
+            <div class="bg-white rounded-lg shadow-sm p-8">
+                <div class="bg-red-50 border-l-4 border-red-500 p-6 rounded-r">
+                    <div class="flex items-start">
+                        <svg class="w-6 h-6 text-red-600 mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"/>
+                        </svg>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-semibold text-red-900 mb-1">Storage Error</h3>
+                            <p class="text-red-700 mb-4">Unable to save tasks. Your browser's local storage may be full or disabled.</p>
+                            <button class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 text-sm font-medium">Try Again</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Task List State -->
+        <div id="state-list" class="state-container">
+            <div class="bg-white rounded-lg shadow-sm divide-y">
+                <div class="p-4 flex items-center gap-4 hover:bg-gray-50">
+                    <input type="checkbox" class="w-5 h-5 text-primary-600 rounded">
+                    <div class="flex-1">
+                        <h3 class="text-lg font-medium">Complete project documentation</h3>
+                        <p class="text-sm text-gray-600">Write comprehensive guides</p>
+                    </div>
+                    <button class="px-3 py-1 text-primary-600 hover:bg-primary-50 rounded text-sm">Edit</button>
+                    <button class="px-3 py-1 text-red-600 hover:bg-red-50 rounded text-sm">Delete</button>
+                </div>
+                <div class="p-4 flex items-center gap-4 hover:bg-gray-50 opacity-70">
+                    <input type="checkbox" checked class="w-5 h-5 text-primary-600 rounded">
+                    <div class="flex-1">
+                        <h3 class="text-lg font-medium line-through text-gray-600">Review pull requests</h3>
+                        <p class="text-sm text-gray-500">Check code quality</p>
+                    </div>
+                    <button class="px-3 py-1 text-primary-600 hover:bg-primary-50 rounded text-sm">Edit</button>
+                    <button class="px-3 py-1 text-red-600 hover:bg-red-50 rounded text-sm">Delete</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Form State -->
+        <div id="state-form" class="state-container hidden">
+            <div class="bg-white rounded-lg shadow-xl max-w-2xl mx-auto">
+                <div class="bg-primary-600 text-white px-6 py-4 rounded-t-lg">
+                    <h2 class="text-xl font-semibold">Create New Task</h2>
+                </div>
+                <div class="p-6 space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Task Title <span class="text-red-600">*</span></label>
+                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500" placeholder="e.g., Buy groceries">
+                        <div class="text-sm text-gray-500 mt-1 text-right">0/200</div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Description <span class="text-gray-500">(optional)</span></label>
+                        <textarea rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500" placeholder="Add more details..."></textarea>
+                        <div class="text-sm text-gray-500 mt-1 text-right">0/1000</div>
+                    </div>
+                    <div class="flex gap-3 pt-4 border-t">
+                        <button class="flex-1 px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">Cancel</button>
+                        <button class="flex-1 px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700">Save Task</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showState(stateName) {
+            document.querySelectorAll('.state-container').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`state-${stateName}`).classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

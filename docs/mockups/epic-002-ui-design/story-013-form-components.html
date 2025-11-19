@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Component - ToDoApp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:{500:'#0ea5e9',600:'#0284c7'}}}}};</script>
+</head>
+<body class="bg-gray-50 p-8">
+    <div class="container mx-auto max-w-4xl">
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">UI Component Demonstration</h1>
+            <p class="text-gray-600">Modern, clean visual design with consistent styling</p>
+        </header>
+        
+        <div class="bg-white rounded-lg shadow p-6">
+            <h2 class="text-xl font-semibold mb-4">Task List Visual Design</h2>
+            <div class="space-y-3">
+                <div class="flex items-center gap-4 p-4 border border-gray-200 rounded-lg hover:border-primary-500 hover:shadow-md transition-all">
+                    <input type="checkbox" class="w-5 h-5 text-primary-600 rounded focus:ring-2 focus:ring-primary-500">
+                    <div class="flex-1">
+                        <h3 class="font-medium text-gray-900">Sample Task Title</h3>
+                        <p class="text-sm text-gray-600">Task description with details</p>
+                    </div>
+                    <button class="px-4 py-2 text-primary-600 hover:bg-primary-50 rounded-lg text-sm font-medium min-h-[44px]">Edit</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow p-6 mt-6">
+            <h2 class="text-xl font-semibold mb-4">Form Components</h2>
+            <form class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-900 mb-2">Input Field</label>
+                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 min-h-[44px]" placeholder="Enter text">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-900 mb-2">Textarea</label>
+                    <textarea rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500" placeholder="Enter description"></textarea>
+                </div>
+                <button type="button" class="w-full md:w-auto px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 focus:ring-2 focus:ring-primary-500 min-h-[44px]">Submit</button>
+            </form>
+        </div>
+        
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mt-6 rounded-r">
+            <p class="text-blue-800 text-sm">
+                <strong>Touch Optimization:</strong> All interactive elements have minimum 44x44px touch targets for mobile accessibility
+            </p>
+        </div>
+    </div>
+</body>
+</html>
