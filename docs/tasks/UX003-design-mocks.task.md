@@ -1,0 +1,1 @@
+I want to analyze epics and stories in docs/tickets folder and create mockups as self-contained HTML files with Tailwind CSS in docs/mockups folder. Implement fake behavior where possible to make mockups more interactive.
