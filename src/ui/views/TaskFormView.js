@@ -29,12 +29,7 @@ export class TaskFormView {
             <div class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="form-title">
                 <div class="modal">
                     <div class="modal-header">
-                        <h2 id="form-title">
-                            <svg width="40" height="40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                            </svg>
-                            ${isEditing ? 'Edit Task' : 'Create New Task'}
-                        </h2>
+                        <h2 id="form-title">${isEditing ? 'Edit Task' : 'Add New Task'}</h2>
                         <button class="modal-close" aria-label="Close">&times;</button>
                     </div>
                     <form id="task-form" class="modal-body">
@@ -66,7 +61,7 @@ export class TaskFormView {
                                 id="task-description" 
                                 name="description"
                                 maxlength="1000"
-                                rows="5"
+                                rows="4"
                                 placeholder="Add more details about this task..."
                             >${task ? this.escapeHTML(task.description) : ''}</textarea>
                             <div class="form-meta">
@@ -78,7 +73,7 @@ export class TaskFormView {
                         <div class="form-actions">
                             <button type="button" class="btn btn-secondary" id="cancel-btn">Cancel</button>
                             <button type="submit" class="btn btn-primary" id="save-btn">
-                                ${isEditing ? 'Update Task' : 'Save Task'}
+                                ${isEditing ? 'Save Changes' : 'Add Task'}
                             </button>
                         </div>
                     </form>

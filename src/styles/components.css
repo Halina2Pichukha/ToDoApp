@@ -1,50 +1,23 @@
 /* App Layout Styles */
 
-@keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-}
-
 .app-header {
-    text-align: center;
-    padding: var(--spacing-xl);
-    background: linear-gradient(-45deg, #d946ef, #c026d3, #a21caf, #86198f);
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
-    color: white;
     margin-bottom: var(--spacing-xl);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-xl);
 }
 
 .app-header h1 {
-    font-size: 2.5rem;
+    font-size: var(--font-size-2xl);
     font-weight: 700;
+    color: var(--color-text);
     margin-bottom: var(--spacing-sm);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-md);
-}
-
-.app-header svg {
-    animation: float 3s ease-in-out infinite;
 }
 
 .app-tagline {
-    font-size: var(--font-size-lg);
-    opacity: 0.95;
-    color: #f0abfc;
+    font-size: var(--font-size-base);
+    color: var(--color-text-light);
 }
 
 .app-main {
-    max-width: 800px;
+    max-width: 64rem;
     margin: 0 auto;
     padding: 0 var(--spacing-md);
 }
@@ -55,12 +28,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
 }
 
 .task-list-header h2 {
     font-size: var(--font-size-xl);
-    font-weight: 700;
+    font-weight: 600;
     color: var(--color-text);
 }
 
@@ -95,26 +70,22 @@
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #d946ef 0%, #c026d3 100%);
+    background-color: var(--color-primary);
     color: white;
-    box-shadow: var(--shadow-md);
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, #c026d3 0%, #a21caf 100%);
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: var(--shadow-lg);
+    background-color: var(--color-primary-dark);
 }
 
 .btn-secondary {
     background-color: var(--color-background);
     color: var(--color-text);
-    border: 2px solid var(--color-border);
+    border: 1px solid var(--color-border);
 }
 
 .btn-secondary:hover {
     background-color: var(--color-background-alt);
-    border-color: var(--color-primary-light);
 }
 
 .btn-danger {
@@ -148,31 +119,27 @@
 
 .add-task-btn {
     white-space: nowrap;
-    font-size: var(--font-size-lg);
-    font-weight: 700;
-    padding: var(--spacing-md) var(--spacing-xl);
-    border-radius: var(--radius-xl);
+    font-weight: 600;
 }
 
 .add-task-btn svg {
-    width: 1.5rem;
-    height: 1.5rem;
-    stroke-width: 3;
+    margin-right: var(--spacing-sm);
 }
 
 /* Task List */
 
 .task-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
+    background: var(--color-background);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
 }
 
 /* Task Item */
 
 .task-item {
     background: var(--color-background);
-    border: 2px solid var(--color-border);
+    border: 1px solid var(--color-border-light);
     border-radius: var(--radius-lg);
     padding: var(--spacing-md);
     display: flex;
@@ -181,9 +148,8 @@
 }
 
 .task-item:hover {
-    box-shadow: var(--shadow-md);
-    border-color: var(--color-primary-light);
-    transform: translateY(-2px);
+    background-color: #f9fafb;
+    border-color: var(--color-border);
 }
 
 .task-item.completed {
@@ -242,25 +208,32 @@
 /* Empty State */
 
 .empty-state {
+    background: var(--color-background);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
     text-align: center;
-    padding: var(--spacing-xl) var(--spacing-md);
+    padding: 4rem var(--spacing-md);
 }
 
 .empty-state-icon {
-    color: var(--color-text-muted);
-    margin-bottom: var(--spacing-lg);
+    color: #d1d5db;
+    margin: 0 auto var(--spacing-lg);
 }
 
 .empty-state-title {
-    font-size: var(--font-size-lg);
-    font-weight: 500;
+    font-size: var(--font-size-xl);
+    font-weight: 600;
     color: var(--color-text);
     margin-bottom: var(--spacing-sm);
 }
 
 .empty-state-message {
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-base);
     color: var(--color-text-light);
+    margin-bottom: var(--spacing-xl);
+    max-width: 28rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Modal */
@@ -271,8 +244,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -284,7 +256,7 @@
     background: var(--color-background);
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-xl);
-    max-width: 600px;
+    max-width: 42rem;
     width: 100%;
     max-height: 90vh;
     overflow: auto;
@@ -292,39 +264,28 @@
 
 .modal-header {
     padding: var(--spacing-xl);
-    background: linear-gradient(-45deg, #d946ef, #c026d3, #a21caf, #86198f);
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
-    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-    color: white;
+    border-bottom: 1px solid var(--color-border-light);
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .modal-header h2 {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: white;
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
-}
-
-.modal-header svg {
-    animation: float 3s ease-in-out infinite;
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--color-text);
 }
 
 .modal-close {
-    background: rgba(255, 255, 255, 0.2);
+    background: none;
     border: none;
-    font-size: 2rem;
-    color: white;
+    font-size: 1.5rem;
+    color: var(--color-text-light);
     cursor: pointer;
     padding: 0;
-    width: 40px;
-    height: 40px;
-    border-radius: var(--radius-md);
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -332,8 +293,8 @@
 }
 
 .modal-close:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.1);
+    background-color: var(--color-background-alt);
+    color: var(--color-text);
 }
 
 .modal-body {
@@ -348,13 +309,10 @@
 
 .form-group label {
     display: block;
-    font-weight: 700;
+    font-weight: 500;
     margin-bottom: var(--spacing-sm);
     color: var(--color-text);
     font-size: var(--font-size-sm);
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-xs);
 }
 
 .required {
@@ -364,20 +322,19 @@
 .form-group input[type="text"],
 .form-group textarea {
     width: 100%;
-    padding: var(--spacing-md) var(--spacing-lg);
-    border: 2px solid var(--color-border);
-    border-radius: var(--radius-lg);
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
     font-size: var(--font-size-base);
     font-family: inherit;
     transition: all var(--transition-fast);
-    background-color: rgba(253, 244, 255, 0.3);
 }
 
 .form-group input[type="text"]:focus,
 .form-group textarea:focus {
     outline: none;
     border-color: var(--color-primary);
-    box-shadow: 0 0 0 4px rgba(217, 70, 239, 0.1);
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
 }
 
 .form-group input[aria-invalid="true"],

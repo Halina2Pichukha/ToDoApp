@@ -15,10 +15,10 @@ export class AddTaskButton {
 
         // Add SVG icon
         button.innerHTML = `
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path>
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
             </svg>
-            Add New Task
+            Add Task
         `;
 
         button.addEventListener('click', () => {
