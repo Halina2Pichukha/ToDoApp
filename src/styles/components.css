@@ -1,22 +1,46 @@
 /* App Layout Styles */
 
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
 .app-header {
     text-align: center;
-    padding: var(--spacing-xl) var(--spacing-md);
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    padding: var(--spacing-xl);
+    background: linear-gradient(-45deg, #d946ef, #c026d3, #a21caf, #86198f);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
     color: white;
     margin-bottom: var(--spacing-xl);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
 }
 
 .app-header h1 {
-    font-size: var(--font-size-xl);
-    font-weight: 600;
-    margin-bottom: var(--spacing-xs);
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+.app-header svg {
+    animation: float 3s ease-in-out infinite;
 }
 
 .app-tagline {
-    font-size: var(--font-size-sm);
-    opacity: 0.9;
+    font-size: var(--font-size-lg);
+    opacity: 0.95;
+    color: #f0abfc;
 }
 
 .app-main {
@@ -31,12 +55,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
 }
 
 .task-list-header h2 {
-    font-size: var(--font-size-lg);
-    font-weight: 600;
+    font-size: var(--font-size-xl);
+    font-weight: 700;
     color: var(--color-text);
 }
 
@@ -71,22 +95,26 @@
 }
 
 .btn-primary {
-    background-color: var(--color-primary);
+    background: linear-gradient(135deg, #d946ef 0%, #c026d3 100%);
     color: white;
+    box-shadow: var(--shadow-md);
 }
 
 .btn-primary:hover {
-    background-color: var(--color-primary-dark);
+    background: linear-gradient(135deg, #c026d3 0%, #a21caf 100%);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: var(--shadow-lg);
 }
 
 .btn-secondary {
     background-color: var(--color-background);
     color: var(--color-text);
-    border: 1px solid var(--color-border);
+    border: 2px solid var(--color-border);
 }
 
 .btn-secondary:hover {
     background-color: var(--color-background-alt);
+    border-color: var(--color-primary-light);
 }
 
 .btn-danger {
@@ -120,6 +148,16 @@
 
 .add-task-btn {
     white-space: nowrap;
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: var(--radius-xl);
+}
+
+.add-task-btn svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    stroke-width: 3;
 }
 
 /* Task List */
@@ -134,8 +172,8 @@
 
 .task-item {
     background: var(--color-background);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
     padding: var(--spacing-md);
     display: flex;
     gap: var(--spacing-md);
@@ -143,8 +181,9 @@
 }
 
 .task-item:hover {
-    box-shadow: var(--shadow-sm);
-    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary-light);
+    transform: translateY(-2px);
 }
 
 .task-item.completed {
@@ -159,7 +198,8 @@
     width: 20px;
     height: 20px;
     cursor: pointer;
-    accent-color: var(--color-success);
+    accent-color: var(--color-primary);
+    border-radius: var(--radius-sm);
 }
 
 .task-content {
@@ -231,7 +271,8 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -241,38 +282,49 @@
 
 .modal {
     background: var(--color-background);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
-    max-width: 500px;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    max-width: 600px;
     width: 100%;
     max-height: 90vh;
     overflow: auto;
 }
 
 .modal-header {
-    padding: var(--spacing-lg);
-    border-bottom: 1px solid var(--color-border-light);
+    padding: var(--spacing-xl);
+    background: linear-gradient(-45deg, #d946ef, #c026d3, #a21caf, #86198f);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .modal-header h2 {
-    font-size: var(--font-size-lg);
-    font-weight: 600;
-    color: var(--color-text);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.modal-header svg {
+    animation: float 3s ease-in-out infinite;
 }
 
 .modal-close {
-    background: none;
+    background: rgba(255, 255, 255, 0.2);
     border: none;
-    font-size: 1.5rem;
-    color: var(--color-text-light);
+    font-size: 2rem;
+    color: white;
     cursor: pointer;
     padding: 0;
-    width: 32px;
-    height: 32px;
-    border-radius: var(--radius-sm);
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -280,8 +332,8 @@
 }
 
 .modal-close:hover {
-    background-color: var(--color-background-alt);
-    color: var(--color-text);
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
 }
 
 .modal-body {
@@ -296,9 +348,13 @@
 
 .form-group label {
     display: block;
-    font-weight: 500;
+    font-weight: 700;
     margin-bottom: var(--spacing-sm);
     color: var(--color-text);
+    font-size: var(--font-size-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
 }
 
 .required {
@@ -308,19 +364,20 @@
 .form-group input[type="text"],
 .form-group textarea {
     width: 100%;
-    padding: var(--spacing-sm) var(--spacing-md);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
     font-size: var(--font-size-base);
     font-family: inherit;
     transition: all var(--transition-fast);
+    background-color: rgba(253, 244, 255, 0.3);
 }
 
 .form-group input[type="text"]:focus,
 .form-group textarea:focus {
     outline: none;
     border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+    box-shadow: 0 0 0 4px rgba(217, 70, 239, 0.1);
 }
 
 .form-group input[aria-invalid="true"],

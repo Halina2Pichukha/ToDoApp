@@ -20,8 +20,13 @@ export class AppShell {
         // Create main layout
         this.container.innerHTML = `
             <header class="app-header">
-                <h1>ToDoApp</h1>
-                <p class="app-tagline">Manage your tasks effectively</p>
+                <h1>
+                    <svg width="48" height="48" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                    </svg>
+                    My Tasks
+                </h1>
+                <p class="app-tagline">Create and manage your daily tasks beautifully</p>
             </header>
             <main class="app-main">
                 <div id="task-list-container"></div>

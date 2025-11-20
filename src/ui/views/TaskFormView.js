@@ -29,13 +29,18 @@ export class TaskFormView {
             <div class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="form-title">
                 <div class="modal">
                     <div class="modal-header">
-                        <h2 id="form-title">${isEditing ? 'Edit Task' : 'Add New Task'}</h2>
+                        <h2 id="form-title">
+                            <svg width="40" height="40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                            </svg>
+                            ${isEditing ? 'Edit Task' : 'Create New Task'}
+                        </h2>
                         <button class="modal-close" aria-label="Close">&times;</button>
                     </div>
                     <form id="task-form" class="modal-body">
                         <div class="form-group">
                             <label for="task-title">
-                                Title <span class="required">*</span>
+                                Task Title <span class="required">*</span>
                             </label>
                             <input 
                                 type="text" 
@@ -44,32 +49,36 @@ export class TaskFormView {
                                 maxlength="200"
                                 required
                                 aria-required="true"
+                                placeholder="e.g., Buy groceries for dinner"
                                 value="${task ? this.escapeHTML(task.title) : ''}"
                             />
                             <div class="form-meta">
-                                <span class="char-counter" id="title-counter">0/200</span>
                                 <span class="error-message" id="title-error" role="alert"></span>
+                                <span class="char-counter" id="title-counter">0/200</span>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="task-description">Description</label>
+                            <label for="task-description">
+                                Description <span class="text-gray-500">(optional)</span>
+                            </label>
                             <textarea 
                                 id="task-description" 
                                 name="description"
                                 maxlength="1000"
-                                rows="4"
+                                rows="5"
+                                placeholder="Add more details about this task..."
                             >${task ? this.escapeHTML(task.description) : ''}</textarea>
                             <div class="form-meta">
-                                <span class="char-counter" id="description-counter">0/1000</span>
                                 <span class="error-message" id="description-error" role="alert"></span>
+                                <span class="char-counter" id="description-counter">0/1000</span>
                             </div>
                         </div>
 
                         <div class="form-actions">
                             <button type="button" class="btn btn-secondary" id="cancel-btn">Cancel</button>
                             <button type="submit" class="btn btn-primary" id="save-btn">
-                                ${isEditing ? 'Update' : 'Add'} Task
+                                ${isEditing ? 'Update Task' : 'Save Task'}
                             </button>
                         </div>
                     </form>

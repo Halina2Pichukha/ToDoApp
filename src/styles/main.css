@@ -6,20 +6,22 @@
 }
 
 :root {
-    /* Color Palette */
-    --color-primary: #4A90E2;
-    --color-primary-dark: #357ABD;
-    --color-secondary: #7B68EE;
-    --color-success: #5CB85C;
-    --color-danger: #D9534F;
-    --color-warning: #F0AD4E;
-    --color-text: #333333;
-    --color-text-light: #666666;
-    --color-text-muted: #999999;
+    /* Color Palette - Purple/Pink Theme */
+    --color-primary: #d946ef;
+    --color-primary-dark: #c026d3;
+    --color-primary-light: #f0abfc;
+    --color-secondary: #a21caf;
+    --color-accent: #e879f9;
+    --color-success: #10b981;
+    --color-danger: #ef4444;
+    --color-warning: #f59e0b;
+    --color-text: #1f2937;
+    --color-text-light: #6b7280;
+    --color-text-muted: #9ca3af;
     --color-background: #FFFFFF;
-    --color-background-alt: #F8F9FA;
-    --color-border: #DDDDDD;
-    --color-border-light: #EEEEEE;
+    --color-background-alt: #fdf4ff;
+    --color-border: #e9d5ff;
+    --color-border-light: #f3e8ff;
     
     /* Spacing */
     --spacing-xs: 0.25rem;
@@ -36,14 +38,16 @@
     --font-size-xl: 1.5rem;
     
     /* Shadows */
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+    --shadow-sm: 0 1px 3px rgba(217, 70, 239, 0.1);
+    --shadow-md: 0 4px 6px rgba(217, 70, 239, 0.1);
+    --shadow-lg: 0 10px 25px rgba(217, 70, 239, 0.15);
+    --shadow-xl: 0 20px 40px rgba(217, 70, 239, 0.2);
     
     /* Border Radius */
-    --radius-sm: 0.25rem;
-    --radius-md: 0.5rem;
-    --radius-lg: 0.75rem;
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
     
     /* Transitions */
     --transition-fast: 150ms ease;
@@ -55,16 +59,17 @@ body {
     font-size: var(--font-size-base);
     line-height: 1.6;
     color: var(--color-text);
-    background-color: var(--color-background-alt);
+    background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 50%, #ede9fe 100%);
+    background-attachment: fixed;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
 }
 
 .app-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: var(--spacing-md);
-    min-height: 100vh;
 }
 
 /* Utility Classes */
@@ -78,6 +83,12 @@ body {
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border-width: 0;
+}
+
+.text-gray-500 {
+    color: var(--color-text-muted);
+    font-weight: 400;
+    font-size: 0.75rem;
 }
 
 /* Focus Styles for Accessibility */
